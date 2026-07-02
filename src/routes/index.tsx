@@ -598,8 +598,8 @@ function Industries() {
 /* ---------------- Stats ---------------- */
 function Stats() {
   const stats = [
-    { v: "18+", l: "Products" },
-    { v: "12,400+", l: "Happy Customers" },
+    { v: "15", l: "Departments" },
+    { v: "18+", l: "Products across divisions" },
     { v: "38", l: "Countries" },
     { v: "9.4B", l: "API Requests / mo" },
     { v: "620M", l: "Orders Processed" },
@@ -629,12 +629,12 @@ function Stats() {
 /* ---------------- Testimonials ---------------- */
 function Testimonials() {
   const t = [
-    { q: "SGT Core replaced five vendors with one platform. Our operations team has never moved faster.", n: "Ananya Rao", r: "COO, Metro Foods" },
-    { q: "MediCore ERP transformed our hospital. Billing, EMR and pharmacy — finally one truth.", n: "Dr. Rajiv Menon", r: "Director, Aster Health" },
-    { q: "EduNova gave our campuses a real digital backbone. Parents, teachers and students all love it.", n: "Priya Sharma", r: "Principal, Polaris EDU" },
-    { q: "ShopWave scaled with us from 3 to 78 stores without a single re-platform.", n: "Kabir Malhotra", r: "Founder, Zenith Retail" },
-    { q: "The AI layer is the differentiator. It quietly does the work of an analyst on every store.", n: "Mei Tanaka", r: "VP Product, Skyline Hotels" },
-    { q: "As a technology partner, integrating with SGT Core APIs was the smoothest we've ever done.", n: "Lucas Fernandes", r: "CTO, Vantage Group" },
+    { q: "Working with SGT feels like partnering with a full technology organization — each department a specialist in its domain.", n: "Ananya Rao", r: "COO, Metro Foods" },
+    { q: "MediCore ERP by SySoft Systems transformed our hospital. Billing, EMR and pharmacy — finally one truth.", n: "Dr. Rajiv Menon", r: "Director, Aster Health" },
+    { q: "EduNova, engineered by SySoft Systems, gave our campuses a real digital backbone.", n: "Priya Sharma", r: "Principal, Polaris EDU" },
+    { q: "ShopWave scaled with us from 3 to 78 stores. The SGT ecosystem is built for growth.", n: "Kabir Malhotra", r: "Founder, Zenith Retail" },
+    { q: "The AIAB team's applied research is the differentiator. Enterprise AI you can actually deploy.", n: "Mei Tanaka", r: "VP Product, Skyline Hotels" },
+    { q: "Every SGT department speaks the same engineering language. Integration was effortless.", n: "Lucas Fernandes", r: "CTO, Vantage Group" },
   ];
   return (
     <section className="py-24 md:py-32">
