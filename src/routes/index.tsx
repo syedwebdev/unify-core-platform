@@ -729,13 +729,13 @@ function Developers() {
     <section id="developers" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div>
-          <SectionEyebrow>Developer Platform</SectionEyebrow>
+          <SectionEyebrow>Developer Platform · WAPO</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Build on the <span className="text-gradient">SGT Core API.</span>
+            Build on the <span className="text-gradient">SGT ecosystem APIs.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            REST & GraphQL APIs, SDKs, webhooks, OAuth 2.0, and a full sandbox — everything you need to
-            extend the platform or embed our products in your own experience.
+            The WAPO division delivers REST & GraphQL APIs, SDKs, webhooks and OAuth 2.0 across every
+            SGT platform — a unified developer surface for the entire ecosystem.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-white">
@@ -758,19 +758,18 @@ function Developers() {
               <span className="ml-2">POST /v1/orders</span>
             </div>
             <pre className="p-5 text-xs leading-relaxed text-foreground/90 overflow-x-auto">
-{`const sgt = new SGTCore({ apiKey: process.env.SGT_KEY });
+{`import { SGT } from "@sgt/ecosystem";
 
-const order = await sgt.commerce.orders.create({
+const sgt = new SGT({ apiKey: process.env.SGT_KEY });
+
+// SySoft Systems · ShopWave
+const order = await sgt.sysoft.shopwave.orders.create({
   outlet: "andheri-west",
-  items: [
-    { sku: "LATTE-M", qty: 2 },
-    { sku: "CROISSANT", qty: 1 },
-  ],
-  customer: { phone: "+91xxxxxxxxxx" },
+  items: [{ sku: "LATTE-M", qty: 2 }],
 });
 
-// AI: auto-suggest upsell + delivery ETA
-const insight = await sgt.ai.suggest(order.id);`}
+// AIAB · applied intelligence
+const insight = await sgt.aiab.suggest(order.id);`}
             </pre>
           </div>
         </div>
