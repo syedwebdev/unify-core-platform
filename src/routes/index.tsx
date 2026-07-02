@@ -329,14 +329,80 @@ function ProductCard({ name, desc, tags, category }: { name: string; desc: strin
           <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
         ))}
       </div>
-      <div className="mt-5 flex items-center gap-3 text-sm">
+      <div className="mt-5 flex items-center justify-between text-sm">
         <a href="#" className="inline-flex items-center gap-1 text-foreground hover:text-[color:var(--brand-2)] transition">
           Learn more <ArrowRight className="h-3.5 w-3.5" />
         </a>
-        <span className="text-white/20">·</span>
-        <a href="#" className="text-muted-foreground hover:text-foreground transition">Live demo</a>
+        <span className="text-[10px] text-muted-foreground">by SySoft Systems</span>
       </div>
     </div>
+  );
+}
+
+/* ---------------- Departments ---------------- */
+function Departments() {
+  const depts: { code: string; name: string; icon: any; desc: string; focus: string[]; roadmap: string }[] = [
+    { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences." },
+    { code: "SySoft", name: "SySoft Systems", icon: Boxes, desc: "Enterprise SaaS product engineering across commerce, food, health, education and access.", focus: ["Multi-tenant SaaS", "POS", "ERP"], roadmap: "Verticalized AI-native business suites." },
+    { code: "AIAB", name: "AIAB", icon: BrainCircuit, desc: "Artificial Intelligence, Machine Learning and Deep Learning research and applied models.", focus: ["ML", "Deep Learning", "LLMs"], roadmap: "Domain-tuned foundation models for enterprise." },
+    { code: "AutoRPA", name: "Auto RPA", icon: Repeat, desc: "Robotic Process Automation for repetitive back-office and operational workflows.", focus: ["RPA", "Workflow AI", "OCR"], roadmap: "Autonomous agents for enterprise operations." },
+    { code: "ERP-CRM", name: "ERP-CRM", icon: Briefcase, desc: "End-to-end enterprise resource and customer relationship platforms.", focus: ["ERP", "CRM", "BPM"], roadmap: "Composable ERP with embedded intelligence." },
+    { code: "EdTech", name: "EdTech", icon: BookOpen, desc: "Learning platforms, assessment engines and campus operations technology.", focus: ["LMS", "Assessments", "Campus Ops"], roadmap: "Adaptive learning and AI tutors." },
+    { code: "FinTech", name: "FinTech", icon: Banknote, desc: "Payments, ledgers and financial infrastructure for modern businesses.", focus: ["Payments", "Ledger", "Compliance"], roadmap: "Regulated open-finance rails." },
+    { code: "DBMS", name: "DBMS", icon: Database, desc: "Database engineering, data modeling and high-performance storage systems.", focus: ["PostgreSQL", "Redis", "Vector DB"], roadmap: "Multi-model, AI-ready data platforms." },
+    { code: "CSS", name: "CSS", icon: Cloud, desc: "Cloud Services & Systems — elastic infrastructure powering every division.", focus: ["Kubernetes", "Multi-cloud", "Edge"], roadmap: "Fully autonomous cloud operations." },
+    { code: "SAD", name: "SAD", icon: Layers, desc: "Systems Architecture & Design — the blueprints behind every SGT platform.", focus: ["Architecture", "Design Systems", "DDD"], roadmap: "Reference architectures for AI-native systems." },
+    { code: "ITIS", name: "ITIS", icon: Server, desc: "IT Infrastructure & Security — enterprise networks, identity and zero-trust.", focus: ["Zero-Trust", "Identity", "SecOps"], roadmap: "Autonomous threat response." },
+    { code: "DMT", name: "DMT", icon: HardDrive, desc: "Data Management & Transformation — pipelines, ETL and governed data products.", focus: ["ETL", "Lakehouse", "Governance"], roadmap: "Real-time governed data mesh." },
+    { code: "WAPO", name: "WAPO", icon: Network, desc: "Web APIs, Protocols & Orchestration — the connective tissue of the ecosystem.", focus: ["REST", "GraphQL", "gRPC"], roadmap: "AI-orchestrated service meshes." },
+    { code: "DS", name: "DS", icon: LineChart, desc: "Data Science — analytics, experimentation and decision intelligence.", focus: ["Analytics", "Forecasting", "MLOps"], roadmap: "Causal & decision-first data science." },
+    { code: "RAO", name: "RAO", icon: Radar, desc: "Research, Applied & Operations — long-horizon R&D and operational excellence.", focus: ["R&D", "Ops", "Innovation Labs"], roadmap: "Breakthrough technology incubation." },
+  ];
+  return (
+    <section id="departments" className="py-24 md:py-32 relative">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <SectionEyebrow>Departments</SectionEyebrow>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
+              Fifteen divisions,<br /><span className="text-gradient">one unified ecosystem.</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md">
+            Each SGT department is an independent technology division with its own expertise, research
+            direction and roadmap — collaborating on a shared engineering core.
+          </p>
+        </div>
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {depts.map((d) => (
+            <div key={d.code} className="group relative glass rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.06]">
+              <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-30 blur-3xl transition-opacity" />
+              <div className="flex items-center justify-between">
+                <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
+                  <d.icon className="h-5 w-5" />
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Division</span>
+              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground min-h-[44px]">{d.desc}</p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {d.focus.map((t) => (
+                  <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
+                ))}
+              </div>
+              <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
+                <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
+              </div>
+              <div className="mt-4">
+                <a href="#" className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition">
+                  View department <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
