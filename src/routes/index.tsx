@@ -216,8 +216,8 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ---------------- Products ---------------- */
-function Products() {
+/* ---------------- SySoft Systems showcase ---------------- */
+function SySoftShowcase() {
   const categories: { name: string; icon: any; items: { name: string; desc: string; tags: string[] }[] }[] = [
     {
       name: "Commerce",
@@ -268,17 +268,19 @@ function Products() {
   ];
 
   return (
-    <section id="products" className="py-24 md:py-32 relative">
+    <section id="sysoft" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
-            <SectionEyebrow>Product Ecosystem</SectionEyebrow>
+            <SectionEyebrow>Featured Division · SySoft Systems</SectionEyebrow>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-              A universe of products,<br /><span className="text-gradient">one connected core.</span>
+              Enterprise SaaS,<br /><span className="text-gradient">engineered by SySoft Systems.</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Each product runs on the same infrastructure, identity, and AI layer — so data, workflows and insights flow seamlessly across your business.
+            SySoft Systems is the software product division within the SGT ecosystem. The products below
+            are developed, owned and operated by SySoft Systems — showcased here as examples of what the
+            SGT ecosystem builds.
           </p>
         </div>
 
@@ -291,7 +293,7 @@ function Products() {
                 </div>
                 <h3 className="font-display text-2xl font-semibold">{cat.name}</h3>
                 <div className="flex-1 h-px bg-white/5" />
-                <span className="text-xs text-muted-foreground">{cat.items.length} products</span>
+                <span className="text-xs text-muted-foreground">{cat.items.length} products · by SySoft Systems</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {cat.items.map((p) => (
@@ -301,6 +303,10 @@ function Products() {
             </div>
           ))}
         </div>
+        <p className="mt-10 text-xs text-muted-foreground text-center max-w-3xl mx-auto">
+          All products above are developed and maintained by <span className="text-foreground/80">SySoft Systems</span>, a division of the SGT ecosystem.
+          SGT Core is the corporate platform representing the ecosystem — not a direct product vendor.
+        </p>
       </div>
     </section>
   );
