@@ -5,6 +5,8 @@ import {
   Zap, Database, Lock, LineChart, Bot, Workflow, Boxes, PlugZap, Smartphone,
   HeartPulse, GraduationCap, Store, UtensilsCrossed, DoorOpen, Building2,
   Check, Github, Twitter, Linkedin, Youtube,
+  Server, BrainCircuit, Repeat, Briefcase, BookOpen, Banknote,
+  HardDrive, Network, Radar, FlaskConical, Handshake,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -18,7 +20,8 @@ function Index() {
       <Hero />
       <LogoMarquee />
       <Overview />
-      <Products />
+      <Departments />
+      <SySoftShowcase />
       <WhyUs />
       <AIPlatform />
       <TechStack />
@@ -28,7 +31,7 @@ function Index() {
       <Security />
       <Integrations />
       <Developers />
-      <Pricing />
+      <Engagement />
       <Vision />
       <CTA />
       <Footer />
@@ -38,7 +41,7 @@ function Index() {
 
 /* ---------------- Nav ---------------- */
 function Nav() {
-  const links = ["Products", "Platform", "Developers", "Industries", "Pricing", "Company"];
+  const links = ["Ecosystem", "Departments", "Platform", "Research", "Industries", "Company"];
   return (
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
       <div className="glass rounded-full px-3 py-2 flex items-center gap-2 w-full max-w-5xl">
@@ -84,23 +87,29 @@ function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <a href="#platform" className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" />
-            Introducing SGT Core AI Platform 2.0
+            The Official Corporate Platform of SGT
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <h1 className="mt-6 font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
             Building the Core <br className="hidden sm:block" />
             Infrastructure for <span className="text-gradient">Modern Business Software</span>
           </h1>
+          <div className="mt-6 flex justify-center">
+            <span className="typewriter text-base sm:text-xl md:text-2xl text-foreground/90">
+              &gt; One ecosystem. Many specialized departments._
+            </span>
+          </div>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            SGT Core develops intelligent SaaS platforms that empower restaurants, retailers, hospitals,
-            educational institutions, and enterprises with scalable cloud software.
+            SGT Core is the official digital platform of SGT — a technology organization of specialized
+            departments engineering AI, automation, cloud, and enterprise systems that power the next
+            generation of business software.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#products" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition">
-              Explore Products <ArrowRight className="h-4 w-4" />
+            <a href="#departments" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition">
+              Explore Departments <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition">
-              Request Demo
+            <a href="#ecosystem" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition">
+              Discover the Ecosystem
             </a>
           </div>
         </div>
@@ -118,8 +127,8 @@ function Hero() {
           </div>
           {/* floating chips */}
           <FloatingChip className="hidden md:flex left-[-2%] top-[20%] animate-float" icon={<Bot className="h-4 w-4" />} label="AI Assistant" sub="+18.6% forecast" />
-          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<ShieldCheck className="h-4 w-4" />} label="SOC 2 Ready" sub="Enterprise security" />
-          <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<Workflow className="h-4 w-4" />} label="Workflow synced" sub="Salesforce · Stripe" />
+          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<Building2 className="h-4 w-4" />} label="15 Departments" sub="Unified ecosystem" />
+          <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<BrainCircuit className="h-4 w-4" />} label="AIAB · Research" sub="ML · DL · Applied AI" />
         </div>
       </div>
     </section>
@@ -140,11 +149,11 @@ function FloatingChip({ className = "", icon, label, sub }: any) {
 
 /* ---------------- Logo marquee ---------------- */
 function LogoMarquee() {
-  const items = ["Zenith Retail", "NovaCare", "Skyline Hotels", "Metro Foods", "Aster Health", "Polaris EDU", "Vantage Group", "Meridian Bank"];
+  const items = ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM", "EdTech", "FinTech", "DBMS", "CSS", "SAD", "ITIS", "DMT", "WAPO", "DS", "RAO"];
   return (
-    <section className="py-12 border-y border-white/5">
+    <section id="ecosystem" className="py-12 border-y border-white/5">
       <div className="mx-auto max-w-7xl px-6">
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">Trusted by teams operating at scale</p>
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">The SGT ecosystem · 15 specialized technology departments</p>
         <div className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
           <div className="flex gap-12 animate-marquee w-max">
             {[...items, ...items].map((n, i) => (
@@ -162,23 +171,24 @@ function LogoMarquee() {
 /* ---------------- Overview ---------------- */
 function Overview() {
   const pillars = [
-    { icon: Cloud, title: "Enterprise SaaS", text: "Multi-tenant cloud products built for scale, uptime and compliance." },
-    { icon: Cpu, title: "AI-Native Core", text: "Intelligence layered into every workflow, report and decision." },
-    { icon: Layers, title: "Unified Platform", text: "One infrastructure powering commerce, food, health, education and more." },
-    { icon: ShieldCheck, title: "Secure by Design", text: "Zero-trust architecture, encryption in transit and at rest." },
+    { icon: Building2, title: "One Organization", text: "SGT is the parent technology organization behind every department in the ecosystem." },
+    { icon: Layers, title: "Specialized Divisions", text: "Fifteen independent departments, each owning a distinct technology domain." },
+    { icon: FlaskConical, title: "Research & Innovation", text: "Applied research in AI, automation, systems and data drives every division forward." },
+    { icon: ShieldCheck, title: "Enterprise-Grade Core", text: "Shared infrastructure, security and standards unify the entire ecosystem." },
   ];
   return (
     <section id="platform" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>The Platform</SectionEyebrow>
+          <SectionEyebrow>The Corporate Platform</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            One core platform.<br />
-            <span className="text-gradient">An ecosystem of business software.</span>
+            SGT is the organization.<br />
+            <span className="text-gradient">SGT Core is its digital face.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            SGT Core is the underlying technology platform that powers a growing family of intelligent SaaS
-            products — engineered for enterprises, small businesses and everything in between.
+            SGT is a technology organization built on specialized departments — each an independent
+            engineering division with its own expertise, research and roadmap. SGT Core is the official
+            corporate platform that represents this ecosystem to the world.
           </p>
         </div>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -206,8 +216,8 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ---------------- Products ---------------- */
-function Products() {
+/* ---------------- SySoft Systems showcase ---------------- */
+function SySoftShowcase() {
   const categories: { name: string; icon: any; items: { name: string; desc: string; tags: string[] }[] }[] = [
     {
       name: "Commerce",
@@ -258,17 +268,19 @@ function Products() {
   ];
 
   return (
-    <section id="products" className="py-24 md:py-32 relative">
+    <section id="sysoft" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
-            <SectionEyebrow>Product Ecosystem</SectionEyebrow>
+            <SectionEyebrow>Featured Division · SySoft Systems</SectionEyebrow>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-              A universe of products,<br /><span className="text-gradient">one connected core.</span>
+              Enterprise SaaS,<br /><span className="text-gradient">engineered by SySoft Systems.</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Each product runs on the same infrastructure, identity, and AI layer — so data, workflows and insights flow seamlessly across your business.
+            SySoft Systems is the software product division within the SGT ecosystem. The products below
+            are developed, owned and operated by SySoft Systems — showcased here as examples of what the
+            SGT ecosystem builds.
           </p>
         </div>
 
@@ -281,7 +293,7 @@ function Products() {
                 </div>
                 <h3 className="font-display text-2xl font-semibold">{cat.name}</h3>
                 <div className="flex-1 h-px bg-white/5" />
-                <span className="text-xs text-muted-foreground">{cat.items.length} products</span>
+                <span className="text-xs text-muted-foreground">{cat.items.length} products · by SySoft Systems</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 {cat.items.map((p) => (
@@ -291,6 +303,10 @@ function Products() {
             </div>
           ))}
         </div>
+        <p className="mt-10 text-xs text-muted-foreground text-center max-w-3xl mx-auto">
+          All products above are developed and maintained by <span className="text-foreground/80">SySoft Systems</span>, a division of the SGT ecosystem.
+          SGT Core is the corporate platform representing the ecosystem — not a direct product vendor.
+        </p>
       </div>
     </section>
   );
@@ -313,14 +329,80 @@ function ProductCard({ name, desc, tags, category }: { name: string; desc: strin
           <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
         ))}
       </div>
-      <div className="mt-5 flex items-center gap-3 text-sm">
+      <div className="mt-5 flex items-center justify-between text-sm">
         <a href="#" className="inline-flex items-center gap-1 text-foreground hover:text-[color:var(--brand-2)] transition">
           Learn more <ArrowRight className="h-3.5 w-3.5" />
         </a>
-        <span className="text-white/20">·</span>
-        <a href="#" className="text-muted-foreground hover:text-foreground transition">Live demo</a>
+        <span className="text-[10px] text-muted-foreground">by SySoft Systems</span>
       </div>
     </div>
+  );
+}
+
+/* ---------------- Departments ---------------- */
+function Departments() {
+  const depts: { code: string; name: string; icon: any; desc: string; focus: string[]; roadmap: string }[] = [
+    { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences." },
+    { code: "SySoft", name: "SySoft Systems", icon: Boxes, desc: "Enterprise SaaS product engineering across commerce, food, health, education and access.", focus: ["Multi-tenant SaaS", "POS", "ERP"], roadmap: "Verticalized AI-native business suites." },
+    { code: "AIAB", name: "AIAB", icon: BrainCircuit, desc: "Artificial Intelligence, Machine Learning and Deep Learning research and applied models.", focus: ["ML", "Deep Learning", "LLMs"], roadmap: "Domain-tuned foundation models for enterprise." },
+    { code: "AutoRPA", name: "Auto RPA", icon: Repeat, desc: "Robotic Process Automation for repetitive back-office and operational workflows.", focus: ["RPA", "Workflow AI", "OCR"], roadmap: "Autonomous agents for enterprise operations." },
+    { code: "ERP-CRM", name: "ERP-CRM", icon: Briefcase, desc: "End-to-end enterprise resource and customer relationship platforms.", focus: ["ERP", "CRM", "BPM"], roadmap: "Composable ERP with embedded intelligence." },
+    { code: "EdTech", name: "EdTech", icon: BookOpen, desc: "Learning platforms, assessment engines and campus operations technology.", focus: ["LMS", "Assessments", "Campus Ops"], roadmap: "Adaptive learning and AI tutors." },
+    { code: "FinTech", name: "FinTech", icon: Banknote, desc: "Payments, ledgers and financial infrastructure for modern businesses.", focus: ["Payments", "Ledger", "Compliance"], roadmap: "Regulated open-finance rails." },
+    { code: "DBMS", name: "DBMS", icon: Database, desc: "Database engineering, data modeling and high-performance storage systems.", focus: ["PostgreSQL", "Redis", "Vector DB"], roadmap: "Multi-model, AI-ready data platforms." },
+    { code: "CSS", name: "CSS", icon: Cloud, desc: "Cloud Services & Systems — elastic infrastructure powering every division.", focus: ["Kubernetes", "Multi-cloud", "Edge"], roadmap: "Fully autonomous cloud operations." },
+    { code: "SAD", name: "SAD", icon: Layers, desc: "Systems Architecture & Design — the blueprints behind every SGT platform.", focus: ["Architecture", "Design Systems", "DDD"], roadmap: "Reference architectures for AI-native systems." },
+    { code: "ITIS", name: "ITIS", icon: Server, desc: "IT Infrastructure & Security — enterprise networks, identity and zero-trust.", focus: ["Zero-Trust", "Identity", "SecOps"], roadmap: "Autonomous threat response." },
+    { code: "DMT", name: "DMT", icon: HardDrive, desc: "Data Management & Transformation — pipelines, ETL and governed data products.", focus: ["ETL", "Lakehouse", "Governance"], roadmap: "Real-time governed data mesh." },
+    { code: "WAPO", name: "WAPO", icon: Network, desc: "Web APIs, Protocols & Orchestration — the connective tissue of the ecosystem.", focus: ["REST", "GraphQL", "gRPC"], roadmap: "AI-orchestrated service meshes." },
+    { code: "DS", name: "DS", icon: LineChart, desc: "Data Science — analytics, experimentation and decision intelligence.", focus: ["Analytics", "Forecasting", "MLOps"], roadmap: "Causal & decision-first data science." },
+    { code: "RAO", name: "RAO", icon: Radar, desc: "Research, Applied & Operations — long-horizon R&D and operational excellence.", focus: ["R&D", "Ops", "Innovation Labs"], roadmap: "Breakthrough technology incubation." },
+  ];
+  return (
+    <section id="departments" className="py-24 md:py-32 relative">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <SectionEyebrow>Departments</SectionEyebrow>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
+              Fifteen divisions,<br /><span className="text-gradient">one unified ecosystem.</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-md">
+            Each SGT department is an independent technology division with its own expertise, research
+            direction and roadmap — collaborating on a shared engineering core.
+          </p>
+        </div>
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {depts.map((d) => (
+            <div key={d.code} className="group relative glass rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.06]">
+              <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-30 blur-3xl transition-opacity" />
+              <div className="flex items-center justify-between">
+                <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
+                  <d.icon className="h-5 w-5" />
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Division</span>
+              </div>
+              <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground min-h-[44px]">{d.desc}</p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {d.focus.map((t) => (
+                  <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
+                ))}
+              </div>
+              <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
+                <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
+              </div>
+              <div className="mt-4">
+                <a href="#" className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition">
+                  View department <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -328,25 +410,25 @@ function ProductCard({ name, desc, tags, category }: { name: string; desc: strin
 function WhyUs() {
   const feats = [
     { icon: Cloud, t: "Modern Cloud", d: "Kubernetes-grade infrastructure built to scale globally." },
-    { icon: Bot, t: "AI Workflows", d: "Every product ships with intelligent automation." },
+    { icon: Bot, t: "AI Workflows", d: "Applied AI from the AIAB division across the ecosystem." },
     { icon: ShieldCheck, t: "Enterprise Security", d: "SOC 2, ISO 27001 aligned controls end-to-end." },
-    { icon: Boxes, t: "Multi-Tenant SaaS", d: "Isolate data, share innovation." },
+    { icon: Boxes, t: "Multi-Tenant Systems", d: "Isolated tenancy, shared engineering excellence." },
     { icon: Zap, t: "Blazing Performance", d: "Sub-100ms responses on the edge." },
     { icon: Globe2, t: "Global Scale", d: "Deployed across regions and CDNs." },
     { icon: Code2, t: "Powerful APIs", d: "REST, GraphQL, webhooks & SDKs." },
     { icon: PlugZap, t: "Easy Integrations", d: "Connect to the tools you already use." },
-    { icon: Sparkles, t: "White-label Ready", d: "Ship your own brand, on our core." },
-    { icon: Smartphone, t: "Mobile First", d: "Native and PWA experiences included." },
-    { icon: Rocket, t: "24×7 Support", d: "Dedicated enterprise success teams." },
-    { icon: Workflow, t: "Continuous Updates", d: "Ship weekly, without downtime." },
+    { icon: Sparkles, t: "Research Culture", d: "Long-horizon R&D powered by RAO and AIAB." },
+    { icon: Smartphone, t: "Mobile First", d: "Native and PWA experiences across divisions." },
+    { icon: Rocket, t: "24×7 Operations", d: "Global engineering coverage across timezones." },
+    { icon: Workflow, t: "Continuous Delivery", d: "Ship weekly across every department." },
   ];
   return (
     <section className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>Why SGT Core</SectionEyebrow>
+          <SectionEyebrow>Why the SGT Ecosystem</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Enterprise capability, <span className="text-gradient">startup velocity.</span>
+            Enterprise depth, <span className="text-gradient">startup velocity.</span>
           </h2>
         </div>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -368,24 +450,24 @@ function WhyUs() {
 /* ---------------- AI Platform ---------------- */
 function AIPlatform() {
   const bullets = [
-    "Smart Reports across every product",
+    "Smart reports across every division",
     "Predictive analytics on live data",
-    "AI chat assistants for operators",
-    "Automated customer & inventory insights",
+    "AI assistants co-engineered with AIAB",
+    "Automated operational insights",
     "Sales forecasting & anomaly detection",
-    "Auto-responses trained on your business",
+    "Domain-tuned models by AIAB",
   ];
   return (
-    <section className="py-24 md:py-32 relative">
+    <section id="research" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div>
-          <SectionEyebrow>AI Platform</SectionEyebrow>
+          <SectionEyebrow>AI & Research · AIAB</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            AI baked into <span className="text-gradient">every product.</span>
+            Applied AI, <span className="text-gradient">engineered by AIAB.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            The SGT Core AI layer sits underneath every application — analyzing operations, surfacing
-            opportunities, and automating the work no one should have to do manually.
+            AIAB — the SGT division for Artificial Intelligence, Machine Learning and Deep Learning —
+            builds the applied intelligence layer used across every product in the ecosystem.
           </p>
           <ul className="mt-8 grid sm:grid-cols-2 gap-3">
             {bullets.map((b) => (
@@ -516,8 +598,8 @@ function Industries() {
 /* ---------------- Stats ---------------- */
 function Stats() {
   const stats = [
-    { v: "18+", l: "Products" },
-    { v: "12,400+", l: "Happy Customers" },
+    { v: "15", l: "Departments" },
+    { v: "18+", l: "Products across divisions" },
     { v: "38", l: "Countries" },
     { v: "9.4B", l: "API Requests / mo" },
     { v: "620M", l: "Orders Processed" },
@@ -547,12 +629,12 @@ function Stats() {
 /* ---------------- Testimonials ---------------- */
 function Testimonials() {
   const t = [
-    { q: "SGT Core replaced five vendors with one platform. Our operations team has never moved faster.", n: "Ananya Rao", r: "COO, Metro Foods" },
-    { q: "MediCore ERP transformed our hospital. Billing, EMR and pharmacy — finally one truth.", n: "Dr. Rajiv Menon", r: "Director, Aster Health" },
-    { q: "EduNova gave our campuses a real digital backbone. Parents, teachers and students all love it.", n: "Priya Sharma", r: "Principal, Polaris EDU" },
-    { q: "ShopWave scaled with us from 3 to 78 stores without a single re-platform.", n: "Kabir Malhotra", r: "Founder, Zenith Retail" },
-    { q: "The AI layer is the differentiator. It quietly does the work of an analyst on every store.", n: "Mei Tanaka", r: "VP Product, Skyline Hotels" },
-    { q: "As a technology partner, integrating with SGT Core APIs was the smoothest we've ever done.", n: "Lucas Fernandes", r: "CTO, Vantage Group" },
+    { q: "Working with SGT feels like partnering with a full technology organization — each department a specialist in its domain.", n: "Ananya Rao", r: "COO, Metro Foods" },
+    { q: "MediCore ERP by SySoft Systems transformed our hospital. Billing, EMR and pharmacy — finally one truth.", n: "Dr. Rajiv Menon", r: "Director, Aster Health" },
+    { q: "EduNova, engineered by SySoft Systems, gave our campuses a real digital backbone.", n: "Priya Sharma", r: "Principal, Polaris EDU" },
+    { q: "ShopWave scaled with us from 3 to 78 stores. The SGT ecosystem is built for growth.", n: "Kabir Malhotra", r: "Founder, Zenith Retail" },
+    { q: "The AIAB team's applied research is the differentiator. Enterprise AI you can actually deploy.", n: "Mei Tanaka", r: "VP Product, Skyline Hotels" },
+    { q: "Every SGT department speaks the same engineering language. Integration was effortless.", n: "Lucas Fernandes", r: "CTO, Vantage Group" },
   ];
   return (
     <section className="py-24 md:py-32">
@@ -647,13 +729,13 @@ function Developers() {
     <section id="developers" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div>
-          <SectionEyebrow>Developer Platform</SectionEyebrow>
+          <SectionEyebrow>Developer Platform · WAPO</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Build on the <span className="text-gradient">SGT Core API.</span>
+            Build on the <span className="text-gradient">SGT ecosystem APIs.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            REST & GraphQL APIs, SDKs, webhooks, OAuth 2.0, and a full sandbox — everything you need to
-            extend the platform or embed our products in your own experience.
+            The WAPO division delivers REST & GraphQL APIs, SDKs, webhooks and OAuth 2.0 across every
+            SGT platform — a unified developer surface for the entire ecosystem.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-white">
@@ -676,19 +758,18 @@ function Developers() {
               <span className="ml-2">POST /v1/orders</span>
             </div>
             <pre className="p-5 text-xs leading-relaxed text-foreground/90 overflow-x-auto">
-{`const sgt = new SGTCore({ apiKey: process.env.SGT_KEY });
+{`import { SGT } from "@sgt/ecosystem";
 
-const order = await sgt.commerce.orders.create({
+const sgt = new SGT({ apiKey: process.env.SGT_KEY });
+
+// SySoft Systems · ShopWave
+const order = await sgt.sysoft.shopwave.orders.create({
   outlet: "andheri-west",
-  items: [
-    { sku: "LATTE-M", qty: 2 },
-    { sku: "CROISSANT", qty: 1 },
-  ],
-  customer: { phone: "+91xxxxxxxxxx" },
+  items: [{ sku: "LATTE-M", qty: 2 }],
 });
 
-// AI: auto-suggest upsell + delivery ETA
-const insight = await sgt.ai.suggest(order.id);`}
+// AIAB · applied intelligence
+const insight = await sgt.aiab.suggest(order.id);`}
             </pre>
           </div>
         </div>
@@ -697,37 +778,72 @@ const insight = await sgt.ai.suggest(order.id);`}
   );
 }
 
-/* ---------------- Pricing ---------------- */
-function Pricing() {
-  const plans = [
-    { name: "Starter", price: "$49", note: "per product / month", features: ["1 product license", "Cloud hosting", "Community support", "Standard APIs"] },
-    { name: "Business", price: "$199", note: "per product / month", featured: true, features: ["Up to 5 products", "Priority support", "Advanced AI features", "SSO & RBAC"] },
-    { name: "Enterprise", price: "Custom", note: "tailored SaaS", features: ["Unlimited products", "Dedicated infra", "White-label licensing", "24×7 success team"] },
+/* ---------------- Engagement Models ---------------- */
+function Engagement() {
+  const models = [
+    {
+      name: "Partnership",
+      icon: Handshake,
+      note: "For enterprises & institutions",
+      features: [
+        "Collaborate with SGT departments",
+        "Joint solution engineering",
+        "Dedicated technical liaison",
+        "Access to product divisions",
+      ],
+    },
+    {
+      name: "Innovation Program",
+      icon: FlaskConical,
+      featured: true,
+      note: "Co-build with AIAB & RAO",
+      features: [
+        "Applied AI & research collaborations",
+        "Proof-of-concept engineering",
+        "Shared IP frameworks",
+        "Long-horizon R&D",
+      ],
+    },
+    {
+      name: "Ecosystem Access",
+      icon: Boxes,
+      note: "For product-led organizations",
+      features: [
+        "Introductions to SySoft Systems",
+        "Integrate with SGT platforms",
+        "Developer & API programs",
+        "White-label & OEM pathways",
+      ],
+    },
   ];
   return (
-    <section id="pricing" className="py-24 md:py-32">
+    <section id="engagement" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>Pricing</SectionEyebrow>
+          <SectionEyebrow>Engagement Models</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Simple plans, <span className="text-gradient">enterprise power.</span>
+            Ways to build <span className="text-gradient">with the SGT ecosystem.</span>
           </h2>
+          <p className="mt-5 text-muted-foreground text-lg">
+            SGT Core doesn't sell software directly — products are delivered by the respective
+            departments. Organizations engage with SGT through partnership, research and ecosystem access.
+          </p>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-5">
-          {plans.map((p) => (
+          {models.map((p) => (
             <div key={p.name} className={`relative glass rounded-2xl p-8 ${p.featured ? "border-transparent" : ""}`}>
               {p.featured && (
                 <>
                   <div className="absolute -inset-px rounded-2xl bg-gradient-brand opacity-40 blur-xl -z-10" />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-[color:var(--brand)]/60 pointer-events-none" />
-                  <span className="absolute -top-3 left-6 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-gradient-brand text-white">Most Popular</span>
+                  <span className="absolute -top-3 left-6 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-gradient-brand text-white">Flagship</span>
                 </>
               )}
-              <h3 className="font-display text-xl font-semibold">{p.name}</h3>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="font-display text-4xl font-bold">{p.price}</span>
-                <span className="text-sm text-muted-foreground">{p.note}</span>
+              <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white">
+                <p.icon className="h-5 w-5" />
               </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{p.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{p.note}</p>
               <ul className="mt-6 space-y-3 text-sm">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
@@ -737,7 +853,7 @@ function Pricing() {
                 ))}
               </ul>
               <a href="#contact" className={`mt-8 inline-flex w-full justify-center items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${p.featured ? "bg-gradient-brand text-white" : "glass hover:bg-white/10"}`}>
-                Get started <ArrowRight className="h-4 w-4" />
+                Talk to SGT <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           ))}
@@ -754,8 +870,8 @@ function Vision() {
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionEyebrow>Global Vision</SectionEyebrow>
         <h2 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
-          To become one of the world's leading
-          <span className="text-gradient"> enterprise software platforms</span> — powering intelligent, scalable, connected businesses everywhere.
+          To become the world's most trusted
+          <span className="text-gradient"> technology ecosystem</span> — a unified organization of specialized departments engineering the future of business software.
         </h2>
       </div>
     </section>
@@ -771,17 +887,17 @@ function CTA() {
           <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
           <div className="relative">
             <h2 className="font-display text-4xl md:text-6xl font-bold">
-              Ready to build on <span className="text-gradient">SGT Core?</span>
+              Ready to work with <span className="text-gradient">the SGT ecosystem?</span>
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-              Talk to our team about the right combination of products, integrations and infrastructure for your business.
+              Connect with the right SGT department for your challenge — from applied AI and automation to enterprise systems and cloud infrastructure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white">
-                Request Demo <ArrowRight className="h-4 w-4" />
+                Talk to SGT <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#products" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10">
-                Explore Products
+              <a href="#departments" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10">
+                Explore Departments
               </a>
             </div>
           </div>
@@ -794,11 +910,10 @@ function CTA() {
 /* ---------------- Footer ---------------- */
 function Footer() {
   const cols = [
-    { t: "Products", l: ["ShopWave", "DineHub", "MediCore ERP", "EduNova", "GateFlow"] },
+    { t: "Departments", l: ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM"] },
+    { t: "More Divisions", l: ["EdTech", "FinTech", "DBMS", "CSS", "SAD"] },
     { t: "Industries", l: ["Retail", "Food", "Healthcare", "Education", "Enterprise"] },
-    { t: "Developers", l: ["Documentation", "APIs", "SDKs", "Status", "Sandbox"] },
     { t: "Company", l: ["About", "Careers", "Blog", "Press", "Contact"] },
-    { t: "Legal", l: ["Privacy", "Terms", "Security", "DPA", "Cookies"] },
   ];
   return (
     <footer className="border-t border-white/5 pt-16 pb-10 mt-10">
@@ -810,7 +925,8 @@ function Footer() {
               <span className="font-display font-bold text-lg">SGT Core</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              Building the core infrastructure for modern business software.
+              The official corporate platform of SGT — a technology ecosystem of specialized departments
+              building the core infrastructure for modern business software.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {[Twitter, Linkedin, Github, Youtube].map((I, i) => (
@@ -832,7 +948,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} SGT Core. Building the Core Infrastructure for Modern Business Software.</div>
+          <div>© {new Date().getFullYear()} SGT · SGT Core is the official corporate platform of the SGT technology ecosystem.</div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" /> All systems operational</span>
           </div>
