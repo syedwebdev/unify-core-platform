@@ -410,25 +410,25 @@ function Departments() {
 function WhyUs() {
   const feats = [
     { icon: Cloud, t: "Modern Cloud", d: "Kubernetes-grade infrastructure built to scale globally." },
-    { icon: Bot, t: "AI Workflows", d: "Every product ships with intelligent automation." },
+    { icon: Bot, t: "AI Workflows", d: "Applied AI from the AIAB division across the ecosystem." },
     { icon: ShieldCheck, t: "Enterprise Security", d: "SOC 2, ISO 27001 aligned controls end-to-end." },
-    { icon: Boxes, t: "Multi-Tenant SaaS", d: "Isolate data, share innovation." },
+    { icon: Boxes, t: "Multi-Tenant Systems", d: "Isolated tenancy, shared engineering excellence." },
     { icon: Zap, t: "Blazing Performance", d: "Sub-100ms responses on the edge." },
     { icon: Globe2, t: "Global Scale", d: "Deployed across regions and CDNs." },
     { icon: Code2, t: "Powerful APIs", d: "REST, GraphQL, webhooks & SDKs." },
     { icon: PlugZap, t: "Easy Integrations", d: "Connect to the tools you already use." },
-    { icon: Sparkles, t: "White-label Ready", d: "Ship your own brand, on our core." },
-    { icon: Smartphone, t: "Mobile First", d: "Native and PWA experiences included." },
-    { icon: Rocket, t: "24×7 Support", d: "Dedicated enterprise success teams." },
-    { icon: Workflow, t: "Continuous Updates", d: "Ship weekly, without downtime." },
+    { icon: Sparkles, t: "Research Culture", d: "Long-horizon R&D powered by RAO and AIAB." },
+    { icon: Smartphone, t: "Mobile First", d: "Native and PWA experiences across divisions." },
+    { icon: Rocket, t: "24×7 Operations", d: "Global engineering coverage across timezones." },
+    { icon: Workflow, t: "Continuous Delivery", d: "Ship weekly across every department." },
   ];
   return (
     <section className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>Why SGT Core</SectionEyebrow>
+          <SectionEyebrow>Why the SGT Ecosystem</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Enterprise capability, <span className="text-gradient">startup velocity.</span>
+            Enterprise depth, <span className="text-gradient">startup velocity.</span>
           </h2>
         </div>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
