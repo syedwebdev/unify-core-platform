@@ -41,7 +41,7 @@ function Index() {
 
 /* ---------------- Nav ---------------- */
 function Nav() {
-  const links = ["Products", "Platform", "Developers", "Industries", "Pricing", "Company"];
+  const links = ["Ecosystem", "Departments", "Platform", "Research", "Industries", "Company"];
   return (
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
       <div className="glass rounded-full px-3 py-2 flex items-center gap-2 w-full max-w-5xl">
