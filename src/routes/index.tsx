@@ -5,6 +5,8 @@ import {
   Zap, Database, Lock, LineChart, Bot, Workflow, Boxes, PlugZap, Smartphone,
   HeartPulse, GraduationCap, Store, UtensilsCrossed, DoorOpen, Building2,
   Check, Github, Twitter, Linkedin, Youtube,
+  Server, BrainCircuit, Repeat, Briefcase, BookOpen, Banknote,
+  HardDrive, Network, Radar, FlaskConical, Handshake,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
