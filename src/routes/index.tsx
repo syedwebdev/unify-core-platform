@@ -20,7 +20,8 @@ function Index() {
       <Hero />
       <LogoMarquee />
       <Overview />
-      <Products />
+      <Departments />
+      <SySoftShowcase />
       <WhyUs />
       <AIPlatform />
       <TechStack />
@@ -30,7 +31,7 @@ function Index() {
       <Security />
       <Integrations />
       <Developers />
-      <Pricing />
+      <Engagement />
       <Vision />
       <CTA />
       <Footer />
