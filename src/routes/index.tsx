@@ -450,24 +450,24 @@ function WhyUs() {
 /* ---------------- AI Platform ---------------- */
 function AIPlatform() {
   const bullets = [
-    "Smart Reports across every product",
+    "Smart reports across every division",
     "Predictive analytics on live data",
-    "AI chat assistants for operators",
-    "Automated customer & inventory insights",
+    "AI assistants co-engineered with AIAB",
+    "Automated operational insights",
     "Sales forecasting & anomaly detection",
-    "Auto-responses trained on your business",
+    "Domain-tuned models by AIAB",
   ];
   return (
-    <section className="py-24 md:py-32 relative">
+    <section id="research" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div>
-          <SectionEyebrow>AI Platform</SectionEyebrow>
+          <SectionEyebrow>AI & Research · AIAB</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            AI baked into <span className="text-gradient">every product.</span>
+            Applied AI, <span className="text-gradient">engineered by AIAB.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            The SGT Core AI layer sits underneath every application — analyzing operations, surfacing
-            opportunities, and automating the work no one should have to do manually.
+            AIAB — the SGT division for Artificial Intelligence, Machine Learning and Deep Learning —
+            builds the applied intelligence layer used across every product in the ecosystem.
           </p>
           <ul className="mt-8 grid sm:grid-cols-2 gap-3">
             {bullets.map((b) => (
