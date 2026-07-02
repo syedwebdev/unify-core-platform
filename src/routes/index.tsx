@@ -870,8 +870,8 @@ function Vision() {
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionEyebrow>Global Vision</SectionEyebrow>
         <h2 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
-          To become one of the world's leading
-          <span className="text-gradient"> enterprise software platforms</span> — powering intelligent, scalable, connected businesses everywhere.
+          To become the world's most trusted
+          <span className="text-gradient"> technology ecosystem</span> — a unified organization of specialized departments engineering the future of business software.
         </h2>
       </div>
     </section>
@@ -887,17 +887,17 @@ function CTA() {
           <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
           <div className="relative">
             <h2 className="font-display text-4xl md:text-6xl font-bold">
-              Ready to build on <span className="text-gradient">SGT Core?</span>
+              Ready to work with <span className="text-gradient">the SGT ecosystem?</span>
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-              Talk to our team about the right combination of products, integrations and infrastructure for your business.
+              Connect with the right SGT department for your challenge — from applied AI and automation to enterprise systems and cloud infrastructure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white">
-                Request Demo <ArrowRight className="h-4 w-4" />
+                Talk to SGT <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#products" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10">
-                Explore Products
+              <a href="#departments" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10">
+                Explore Departments
               </a>
             </div>
           </div>
