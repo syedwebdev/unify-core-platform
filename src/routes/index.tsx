@@ -910,11 +910,10 @@ function CTA() {
 /* ---------------- Footer ---------------- */
 function Footer() {
   const cols = [
-    { t: "Products", l: ["ShopWave", "DineHub", "MediCore ERP", "EduNova", "GateFlow"] },
+    { t: "Departments", l: ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM"] },
+    { t: "More Divisions", l: ["EdTech", "FinTech", "DBMS", "CSS", "SAD"] },
     { t: "Industries", l: ["Retail", "Food", "Healthcare", "Education", "Enterprise"] },
-    { t: "Developers", l: ["Documentation", "APIs", "SDKs", "Status", "Sandbox"] },
     { t: "Company", l: ["About", "Careers", "Blog", "Press", "Contact"] },
-    { t: "Legal", l: ["Privacy", "Terms", "Security", "DPA", "Cookies"] },
   ];
   return (
     <footer className="border-t border-white/5 pt-16 pb-10 mt-10">
@@ -926,7 +925,8 @@ function Footer() {
               <span className="font-display font-bold text-lg">SGT Core</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              Building the core infrastructure for modern business software.
+              The official corporate platform of SGT — a technology ecosystem of specialized departments
+              building the core infrastructure for modern business software.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {[Twitter, Linkedin, Github, Youtube].map((I, i) => (
@@ -948,7 +948,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} SGT Core. Building the Core Infrastructure for Modern Business Software.</div>
+          <div>© {new Date().getFullYear()} SGT · SGT Core is the official corporate platform of the SGT technology ecosystem.</div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" /> All systems operational</span>
           </div>
