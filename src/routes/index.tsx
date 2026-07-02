@@ -171,23 +171,24 @@ function LogoMarquee() {
 /* ---------------- Overview ---------------- */
 function Overview() {
   const pillars = [
-    { icon: Cloud, title: "Enterprise SaaS", text: "Multi-tenant cloud products built for scale, uptime and compliance." },
-    { icon: Cpu, title: "AI-Native Core", text: "Intelligence layered into every workflow, report and decision." },
-    { icon: Layers, title: "Unified Platform", text: "One infrastructure powering commerce, food, health, education and more." },
-    { icon: ShieldCheck, title: "Secure by Design", text: "Zero-trust architecture, encryption in transit and at rest." },
+    { icon: Building2, title: "One Organization", text: "SGT is the parent technology organization behind every department in the ecosystem." },
+    { icon: Layers, title: "Specialized Divisions", text: "Fifteen independent departments, each owning a distinct technology domain." },
+    { icon: FlaskConical, title: "Research & Innovation", text: "Applied research in AI, automation, systems and data drives every division forward." },
+    { icon: ShieldCheck, title: "Enterprise-Grade Core", text: "Shared infrastructure, security and standards unify the entire ecosystem." },
   ];
   return (
     <section id="platform" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>The Platform</SectionEyebrow>
+          <SectionEyebrow>The Corporate Platform</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            One core platform.<br />
-            <span className="text-gradient">An ecosystem of business software.</span>
+            SGT is the organization.<br />
+            <span className="text-gradient">SGT Core is its digital face.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            SGT Core is the underlying technology platform that powers a growing family of intelligent SaaS
-            products — engineered for enterprises, small businesses and everything in between.
+            SGT is a technology organization built on specialized departments — each an independent
+            engineering division with its own expertise, research and roadmap. SGT Core is the official
+            corporate platform that represents this ecosystem to the world.
           </p>
         </div>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
