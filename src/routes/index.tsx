@@ -149,11 +149,11 @@ function FloatingChip({ className = "", icon, label, sub }: any) {
 
 /* ---------------- Logo marquee ---------------- */
 function LogoMarquee() {
-  const items = ["Zenith Retail", "NovaCare", "Skyline Hotels", "Metro Foods", "Aster Health", "Polaris EDU", "Vantage Group", "Meridian Bank"];
+  const items = ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM", "EdTech", "FinTech", "DBMS", "CSS", "SAD", "ITIS", "DMT", "WAPO", "DS", "RAO"];
   return (
-    <section className="py-12 border-y border-white/5">
+    <section id="ecosystem" className="py-12 border-y border-white/5">
       <div className="mx-auto max-w-7xl px-6">
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">Trusted by teams operating at scale</p>
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">The SGT ecosystem · 15 specialized technology departments</p>
         <div className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
           <div className="flex gap-12 animate-marquee w-max">
             {[...items, ...items].map((n, i) => (
