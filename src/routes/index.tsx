@@ -779,37 +779,72 @@ const insight = await sgt.ai.suggest(order.id);`}
   );
 }
 
-/* ---------------- Pricing ---------------- */
-function Pricing() {
-  const plans = [
-    { name: "Starter", price: "$49", note: "per product / month", features: ["1 product license", "Cloud hosting", "Community support", "Standard APIs"] },
-    { name: "Business", price: "$199", note: "per product / month", featured: true, features: ["Up to 5 products", "Priority support", "Advanced AI features", "SSO & RBAC"] },
-    { name: "Enterprise", price: "Custom", note: "tailored SaaS", features: ["Unlimited products", "Dedicated infra", "White-label licensing", "24×7 success team"] },
+/* ---------------- Engagement Models ---------------- */
+function Engagement() {
+  const models = [
+    {
+      name: "Partnership",
+      icon: Handshake,
+      note: "For enterprises & institutions",
+      features: [
+        "Collaborate with SGT departments",
+        "Joint solution engineering",
+        "Dedicated technical liaison",
+        "Access to product divisions",
+      ],
+    },
+    {
+      name: "Innovation Program",
+      icon: FlaskConical,
+      featured: true,
+      note: "Co-build with AIAB & RAO",
+      features: [
+        "Applied AI & research collaborations",
+        "Proof-of-concept engineering",
+        "Shared IP frameworks",
+        "Long-horizon R&D",
+      ],
+    },
+    {
+      name: "Ecosystem Access",
+      icon: Boxes,
+      note: "For product-led organizations",
+      features: [
+        "Introductions to SySoft Systems",
+        "Integrate with SGT platforms",
+        "Developer & API programs",
+        "White-label & OEM pathways",
+      ],
+    },
   ];
   return (
-    <section id="pricing" className="py-24 md:py-32">
+    <section id="engagement" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>Pricing</SectionEyebrow>
+          <SectionEyebrow>Engagement Models</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            Simple plans, <span className="text-gradient">enterprise power.</span>
+            Ways to build <span className="text-gradient">with the SGT ecosystem.</span>
           </h2>
+          <p className="mt-5 text-muted-foreground text-lg">
+            SGT Core doesn't sell software directly — products are delivered by the respective
+            departments. Organizations engage with SGT through partnership, research and ecosystem access.
+          </p>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-5">
-          {plans.map((p) => (
+          {models.map((p) => (
             <div key={p.name} className={`relative glass rounded-2xl p-8 ${p.featured ? "border-transparent" : ""}`}>
               {p.featured && (
                 <>
                   <div className="absolute -inset-px rounded-2xl bg-gradient-brand opacity-40 blur-xl -z-10" />
                   <div className="absolute inset-0 rounded-2xl ring-1 ring-[color:var(--brand)]/60 pointer-events-none" />
-                  <span className="absolute -top-3 left-6 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-gradient-brand text-white">Most Popular</span>
+                  <span className="absolute -top-3 left-6 text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-gradient-brand text-white">Flagship</span>
                 </>
               )}
-              <h3 className="font-display text-xl font-semibold">{p.name}</h3>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="font-display text-4xl font-bold">{p.price}</span>
-                <span className="text-sm text-muted-foreground">{p.note}</span>
+              <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white">
+                <p.icon className="h-5 w-5" />
               </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{p.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{p.note}</p>
               <ul className="mt-6 space-y-3 text-sm">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
@@ -819,7 +854,7 @@ function Pricing() {
                 ))}
               </ul>
               <a href="#contact" className={`mt-8 inline-flex w-full justify-center items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${p.featured ? "bg-gradient-brand text-white" : "glass hover:bg-white/10"}`}>
-                Get started <ArrowRight className="h-4 w-4" />
+                Talk to SGT <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           ))}
