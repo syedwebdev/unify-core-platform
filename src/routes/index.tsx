@@ -87,23 +87,29 @@ function Hero() {
         <div className="mx-auto max-w-4xl text-center">
           <a href="#platform" className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" />
-            Introducing SGT Core AI Platform 2.0
+            The Official Corporate Platform of SGT
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
           <h1 className="mt-6 font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
             Building the Core <br className="hidden sm:block" />
             Infrastructure for <span className="text-gradient">Modern Business Software</span>
           </h1>
+          <div className="mt-6 flex justify-center">
+            <span className="typewriter text-base sm:text-xl md:text-2xl text-foreground/90">
+              &gt; One ecosystem. Many specialized departments._
+            </span>
+          </div>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            SGT Core develops intelligent SaaS platforms that empower restaurants, retailers, hospitals,
-            educational institutions, and enterprises with scalable cloud software.
+            SGT Core is the official digital platform of SGT — a technology organization of specialized
+            departments engineering AI, automation, cloud, and enterprise systems that power the next
+            generation of business software.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#products" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition">
-              Explore Products <ArrowRight className="h-4 w-4" />
+            <a href="#departments" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition">
+              Explore Departments <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition">
-              Request Demo
+            <a href="#ecosystem" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition">
+              Discover the Ecosystem
             </a>
           </div>
         </div>
@@ -121,8 +127,8 @@ function Hero() {
           </div>
           {/* floating chips */}
           <FloatingChip className="hidden md:flex left-[-2%] top-[20%] animate-float" icon={<Bot className="h-4 w-4" />} label="AI Assistant" sub="+18.6% forecast" />
-          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<ShieldCheck className="h-4 w-4" />} label="SOC 2 Ready" sub="Enterprise security" />
-          <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<Workflow className="h-4 w-4" />} label="Workflow synced" sub="Salesforce · Stripe" />
+          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<Building2 className="h-4 w-4" />} label="15 Departments" sub="Unified ecosystem" />
+          <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<BrainCircuit className="h-4 w-4" />} label="AIAB · Research" sub="ML · DL · Applied AI" />
         </div>
       </div>
     </section>
