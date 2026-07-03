@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import sgtLogo from "@/assets/sgt-logo.png.asset.json";
 import { useState } from "react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
@@ -75,7 +74,7 @@ function Nav() {
 function Logo({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <img
-      src={sgtLogo.url}
+      src="/sgt-logo.png"
       alt="SGT logo"
       className={`${className} object-contain drop-shadow-[0_0_18px_oklch(0.55_0.22_275/0.55)]`}
     />
