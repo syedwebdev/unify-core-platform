@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
+import sgtLogo from "@/assets/sgt-logo.png.asset.json";
+import { useState } from "react";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 import {
   ArrowRight, ShieldCheck, Sparkles, Rocket, Globe2, Cpu, Cloud, Code2, Layers,
   Zap, Database, Lock, LineChart, Bot, Workflow, Boxes, PlugZap, Smartphone,
@@ -47,7 +52,7 @@ function Nav() {
       <div className="glass rounded-full px-3 py-2 flex items-center gap-2 w-full max-w-5xl">
         <a href="#" className="flex items-center gap-2 pl-3 pr-4 py-1.5">
           <Logo className="h-7 w-7" />
-          <span className="font-display font-bold tracking-tight">SGT Core</span>
+          <span className="font-display font-bold tracking-tight text-lg">SGT</span>
         </a>
         <nav className="hidden md:flex items-center gap-1 mx-auto text-sm text-muted-foreground">
           {links.map((l) => (
@@ -69,9 +74,11 @@ function Nav() {
 
 function Logo({ className = "h-6 w-6" }: { className?: string }) {
   return (
-    <div className={`${className} relative rounded-lg bg-gradient-brand grid place-items-center shadow-[0_0_20px_oklch(0.55_0.22_275/0.6)]`}>
-      <div className="h-2.5 w-2.5 rounded-sm bg-white/95" />
-    </div>
+    <img
+      src={sgtLogo.url}
+      alt="SGT logo"
+      className={`${className} object-contain drop-shadow-[0_0_18px_oklch(0.55_0.22_275/0.55)]`}
+    />
   );
 }
 
