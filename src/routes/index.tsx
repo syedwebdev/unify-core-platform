@@ -1055,12 +1055,12 @@ function Footer() {
         <div className="grid md:grid-cols-6 gap-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <Logo />
-              <span className="font-display font-bold text-lg">SGT Core</span>
+              <Logo className="h-8 w-8" />
+              <span className="font-display font-bold text-lg">SGT</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              The official corporate platform of SGT — a technology ecosystem of specialized departments
-              building the core infrastructure for modern business software.
+              SGT is a technology organization of specialized departments building the core infrastructure
+              for modern business software.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {[Twitter, Linkedin, Github, Youtube].map((I, i) => (
@@ -1082,7 +1082,7 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} SGT · SGT Core is the official corporate platform of the SGT technology ecosystem.</div>
+          <div>© {new Date().getFullYear()} SGT · A technology ecosystem of specialized departments.</div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" /> All systems operational</span>
           </div>
