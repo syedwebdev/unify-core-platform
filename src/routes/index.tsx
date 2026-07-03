@@ -348,23 +348,54 @@ function ProductCard({ name, desc, tags, category }: { name: string; desc: strin
 
 /* ---------------- Departments ---------------- */
 function Departments() {
-  const depts: { code: string; name: string; icon: any; desc: string; focus: string[]; roadmap: string }[] = [
-    { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences." },
-    { code: "SySoft", name: "SySoft Systems", icon: Boxes, desc: "Enterprise SaaS product engineering across commerce, food, health, education and access.", focus: ["Multi-tenant SaaS", "POS", "ERP"], roadmap: "Verticalized AI-native business suites." },
-    { code: "AIAB", name: "AIAB", icon: BrainCircuit, desc: "Artificial Intelligence, Machine Learning and Deep Learning research and applied models.", focus: ["ML", "Deep Learning", "LLMs"], roadmap: "Domain-tuned foundation models for enterprise." },
-    { code: "AutoRPA", name: "Auto RPA", icon: Repeat, desc: "Robotic Process Automation for repetitive back-office and operational workflows.", focus: ["RPA", "Workflow AI", "OCR"], roadmap: "Autonomous agents for enterprise operations." },
-    { code: "ERP-CRM", name: "ERP-CRM", icon: Briefcase, desc: "End-to-end enterprise resource and customer relationship platforms.", focus: ["ERP", "CRM", "BPM"], roadmap: "Composable ERP with embedded intelligence." },
-    { code: "EdTech", name: "EdTech", icon: BookOpen, desc: "Learning platforms, assessment engines and campus operations technology.", focus: ["LMS", "Assessments", "Campus Ops"], roadmap: "Adaptive learning and AI tutors." },
-    { code: "FinTech", name: "FinTech", icon: Banknote, desc: "Payments, ledgers and financial infrastructure for modern businesses.", focus: ["Payments", "Ledger", "Compliance"], roadmap: "Regulated open-finance rails." },
-    { code: "DBMS", name: "DBMS", icon: Database, desc: "Database engineering, data modeling and high-performance storage systems.", focus: ["PostgreSQL", "Redis", "Vector DB"], roadmap: "Multi-model, AI-ready data platforms." },
-    { code: "CSS", name: "CSS", icon: Cloud, desc: "Cloud Services & Systems — elastic infrastructure powering every division.", focus: ["Kubernetes", "Multi-cloud", "Edge"], roadmap: "Fully autonomous cloud operations." },
-    { code: "SAD", name: "SAD", icon: Layers, desc: "Systems Architecture & Design — the blueprints behind every SGT platform.", focus: ["Architecture", "Design Systems", "DDD"], roadmap: "Reference architectures for AI-native systems." },
-    { code: "ITIS", name: "ITIS", icon: Server, desc: "IT Infrastructure & Security — enterprise networks, identity and zero-trust.", focus: ["Zero-Trust", "Identity", "SecOps"], roadmap: "Autonomous threat response." },
-    { code: "DMT", name: "DMT", icon: HardDrive, desc: "Data Management & Transformation — pipelines, ETL and governed data products.", focus: ["ETL", "Lakehouse", "Governance"], roadmap: "Real-time governed data mesh." },
-    { code: "WAPO", name: "WAPO", icon: Network, desc: "Web APIs, Protocols & Orchestration — the connective tissue of the ecosystem.", focus: ["REST", "GraphQL", "gRPC"], roadmap: "AI-orchestrated service meshes." },
-    { code: "DS", name: "DS", icon: LineChart, desc: "Data Science — analytics, experimentation and decision intelligence.", focus: ["Analytics", "Forecasting", "MLOps"], roadmap: "Causal & decision-first data science." },
-    { code: "RAO", name: "RAO", icon: Radar, desc: "Research, Applied & Operations — long-horizon R&D and operational excellence.", focus: ["R&D", "Ops", "Innovation Labs"], roadmap: "Breakthrough technology incubation." },
+  const depts: Dept[] = [
+    { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences.",
+      expertise: ["Design systems & component libraries", "Server-rendered React on the edge", "PWA & offline-first experiences", "Web performance & Core Web Vitals"],
+      initiatives: ["Unified SGT design system across all divisions", "AI-assisted content authoring for enterprise sites", "Edge-rendered storefronts for SySoft commerce products"] },
+    { code: "SySoft", name: "SySoft Systems", icon: Boxes, desc: "Enterprise SaaS product engineering across commerce, food, health, education and access.", focus: ["Multi-tenant SaaS", "POS", "ERP"], roadmap: "Verticalized AI-native business suites.",
+      expertise: ["Multi-tenant SaaS architecture", "Vertical ERP & POS engineering", "Offline-first mobile point-of-sale", "Billing, subscriptions & pricing engines"],
+      initiatives: ["ShopWave POS · omnichannel retail suite", "MediCore ERP · hospital-grade platform", "FoodoraX · cloud kitchen command center", "EduNova · next-gen campus management"] },
+    { code: "AIAB", name: "AIAB", icon: BrainCircuit, desc: "Artificial Intelligence, Machine Learning and Deep Learning research and applied models.", focus: ["ML", "Deep Learning", "LLMs"], roadmap: "Domain-tuned foundation models for enterprise.",
+      expertise: ["Applied LLMs & retrieval-augmented systems", "Computer vision & document AI", "Time-series forecasting & anomaly detection", "MLOps and model lifecycle"],
+      initiatives: ["Domain-tuned foundation model for retail", "Vision pipelines for healthcare imaging", "Forecasting engine embedded in ShopWave", "In-product AI assistant used across the ecosystem"] },
+    { code: "AutoRPA", name: "Auto RPA", icon: Repeat, desc: "Robotic Process Automation for repetitive back-office and operational workflows.", focus: ["RPA", "Workflow AI", "OCR"], roadmap: "Autonomous agents for enterprise operations.",
+      expertise: ["Attended & unattended bots", "Document OCR & IDP pipelines", "Workflow orchestration", "Human-in-the-loop automation"],
+      initiatives: ["Finance close automation for enterprise clients", "AP invoice ingestion with AIAB models", "Onboarding & KYC bots for FinTech partners"] },
+    { code: "ERP-CRM", name: "ERP-CRM", icon: Briefcase, desc: "End-to-end enterprise resource and customer relationship platforms.", focus: ["ERP", "CRM", "BPM"], roadmap: "Composable ERP with embedded intelligence.",
+      expertise: ["Finance, HR & supply-chain modules", "Sales pipelines & customer 360", "Business process modeling", "Cross-module reporting"],
+      initiatives: ["Composable ERP core shared across SySoft products", "Unified customer graph for the ecosystem", "AI copilots for finance and sales teams"] },
+    { code: "EdTech", name: "EdTech", icon: BookOpen, desc: "Learning platforms, assessment engines and campus operations technology.", focus: ["LMS", "Assessments", "Campus Ops"], roadmap: "Adaptive learning and AI tutors.",
+      expertise: ["LMS & content delivery at scale", "Proctored & adaptive assessments", "Campus & hostel operations", "Learning analytics"],
+      initiatives: ["Scholaro LMS · adaptive learning paths", "Examora · secure online assessments", "AI tutor prototypes with AIAB"] },
+    { code: "FinTech", name: "FinTech", icon: Banknote, desc: "Payments, ledgers and financial infrastructure for modern businesses.", focus: ["Payments", "Ledger", "Compliance"], roadmap: "Regulated open-finance rails.",
+      expertise: ["Payment orchestration & PSP integration", "Double-entry ledgers", "KYC / AML & compliance", "Merchant risk scoring"],
+      initiatives: ["Unified checkout across SySoft commerce apps", "Ledger service powering ERP-CRM", "Open-finance connectors for enterprise clients"] },
+    { code: "DBMS", name: "DBMS", icon: Database, desc: "Database engineering, data modeling and high-performance storage systems.", focus: ["PostgreSQL", "Redis", "Vector DB"], roadmap: "Multi-model, AI-ready data platforms.",
+      expertise: ["High-availability Postgres clusters", "Caching & in-memory systems", "Vector & search indices", "Query performance engineering"],
+      initiatives: ["Managed multi-tenant Postgres for the ecosystem", "Vector store for AIAB retrieval workloads", "Zero-downtime schema evolution framework"] },
+    { code: "CSS", name: "CSS", icon: Cloud, desc: "Cloud Services & Systems — elastic infrastructure powering every division.", focus: ["Kubernetes", "Multi-cloud", "Edge"], roadmap: "Fully autonomous cloud operations.",
+      expertise: ["Kubernetes platform engineering", "Multi-cloud & edge deployment", "Cost & capacity optimization", "SRE & incident response"],
+      initiatives: ["Internal developer platform for all divisions", "Edge runtime for latency-critical products", "Autonomous scaling & remediation with AIAB"] },
+    { code: "SAD", name: "SAD", icon: Layers, desc: "Systems Architecture & Design — the blueprints behind every SGT platform.", focus: ["Architecture", "Design Systems", "DDD"], roadmap: "Reference architectures for AI-native systems.",
+      expertise: ["Domain-driven design", "Event-driven & microservices architecture", "Reference architectures & standards", "Architecture review & governance"],
+      initiatives: ["SGT reference architecture v3", "AI-native service blueprint", "Cross-division architecture council"] },
+    { code: "ITIS", name: "ITIS", icon: Server, desc: "IT Infrastructure & Security — enterprise networks, identity and zero-trust.", focus: ["Zero-Trust", "Identity", "SecOps"], roadmap: "Autonomous threat response.",
+      expertise: ["Zero-trust networking", "Identity & SSO", "SecOps, SIEM & SOAR", "Compliance (SOC 2 / ISO 27001)"],
+      initiatives: ["Ecosystem-wide zero-trust rollout", "Unified identity for internal & partner access", "Autonomous incident response pilots"] },
+    { code: "DMT", name: "DMT", icon: HardDrive, desc: "Data Management & Transformation — pipelines, ETL and governed data products.", focus: ["ETL", "Lakehouse", "Governance"], roadmap: "Real-time governed data mesh.",
+      expertise: ["Streaming & batch pipelines", "Lakehouse architecture", "Data contracts & governance", "Master data management"],
+      initiatives: ["Governed data mesh across divisions", "Real-time analytics stream for commerce", "Data-product catalog for internal teams"] },
+    { code: "WAPO", name: "WAPO", icon: Network, desc: "Web APIs, Protocols & Orchestration — the connective tissue of the ecosystem.", focus: ["REST", "GraphQL", "gRPC"], roadmap: "AI-orchestrated service meshes.",
+      expertise: ["REST, GraphQL & gRPC API design", "OAuth 2.0 & developer identity", "Service mesh & orchestration", "Webhooks & event delivery"],
+      initiatives: ["Unified @sgt/ecosystem SDK", "Public developer portal & API keys", "AI-orchestrated workflows across services"] },
+    { code: "DS", name: "DS", icon: LineChart, desc: "Data Science — analytics, experimentation and decision intelligence.", focus: ["Analytics", "Forecasting", "MLOps"], roadmap: "Causal & decision-first data science.",
+      expertise: ["Experimentation & causal inference", "Forecasting & optimization", "Executive analytics", "Feature stores & MLOps"],
+      initiatives: ["Experimentation platform for product teams", "Decision-intelligence dashboards for operators", "Causal uplift models with AIAB"] },
+    { code: "RAO", name: "RAO", icon: Radar, desc: "Research, Applied & Operations — long-horizon R&D and operational excellence.", focus: ["R&D", "Ops", "Innovation Labs"], roadmap: "Breakthrough technology incubation.",
+      expertise: ["Long-horizon research programs", "Innovation labs & incubation", "Operational excellence", "Cross-division R&D partnerships"],
+      initiatives: ["Ecosystem-wide innovation program", "Emerging-tech scouting (agents, robotics, spatial)", "Partner R&D collaborations with enterprises"] },
   ];
+  const [active, setActive] = useState<Dept | null>(null);
   return (
     <section id="departments" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
@@ -401,15 +432,111 @@ function Departments() {
                 <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
               </div>
               <div className="mt-4">
-                <a href="#" className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition">
+                <button
+                  onClick={() => setActive(d)}
+                  className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition cursor-pointer"
+                >
                   View department <ArrowRight className="h-3.5 w-3.5" />
-                </a>
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+      <DepartmentModal dept={active} onClose={() => setActive(null)} />
     </section>
+  );
+}
+
+type Dept = {
+  code: string; name: string; icon: any; desc: string;
+  focus: string[]; roadmap: string; expertise: string[]; initiatives: string[];
+};
+
+function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose: () => void }) {
+  const open = !!dept;
+  return (
+    <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent className="max-w-2xl bg-background/80 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
+        {dept && (
+          <div className="relative">
+            <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-hero)" }} />
+            <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gradient-brand opacity-30 blur-3xl -z-10" />
+            <div className="p-8">
+              <DialogHeader>
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
+                    <dept.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">SGT Division</div>
+                    <DialogTitle className="font-display text-2xl">{dept.name}</DialogTitle>
+                  </div>
+                </div>
+                <DialogDescription className="mt-3 text-base text-foreground/80">
+                  {dept.desc}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {dept.focus.map((t) => (
+                  <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
+                ))}
+              </div>
+
+              <div className="mt-6 max-h-[55vh] overflow-y-auto pr-1 space-y-6">
+                <ModalBlock title="Core expertise" icon={<Sparkles className="h-4 w-4" />}>
+                  <ul className="grid sm:grid-cols-2 gap-2">
+                    {dept.expertise.map((e) => (
+                      <li key={e} className="flex items-start gap-2 text-sm">
+                        <Check className="h-4 w-4 mt-0.5 text-[color:var(--brand-3)] shrink-0" />
+                        <span className="text-foreground/90">{e}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </ModalBlock>
+
+                <ModalBlock title="Current roadmap" icon={<Rocket className="h-4 w-4" />}>
+                  <p className="text-sm text-foreground/85">{dept.roadmap}</p>
+                </ModalBlock>
+
+                <ModalBlock title="Example initiatives" icon={<FlaskConical className="h-4 w-4" />}>
+                  <ul className="space-y-2">
+                    {dept.initiatives.map((i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm rounded-lg bg-white/[0.03] border border-white/5 px-3 py-2">
+                        <ArrowRight className="h-4 w-4 mt-0.5 text-[color:var(--brand-2)] shrink-0" />
+                        <span className="text-foreground/90">{i}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </ModalBlock>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#contact" onClick={onClose} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-white">
+                  Engage this department <ArrowRight className="h-4 w-4" />
+                </a>
+                <button onClick={onClose} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm font-medium hover:bg-white/10 cursor-pointer">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function ModalBlock({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div>
+      <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
+        <span className="text-[color:var(--brand-2)]">{icon}</span>
+        {title}
+      </div>
+      <div className="mt-3">{children}</div>
+    </div>
   );
 }
 
