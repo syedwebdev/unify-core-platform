@@ -153,6 +153,48 @@ function FloatingChip({ className = "", icon, label, sub }: any) {
   );
 }
 
+function TypingWord() {
+  const words = ["Central platform", "Technology ecosystem", "Infrastructure"];
+  const [display, setDisplay] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [pause, setPause] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex];
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (pause) {
+      timer = setTimeout(() => setPause(false), 1600);
+    } else if (isDeleting) {
+      timer = setTimeout(() => {
+        setDisplay(current.substring(0, display.length - 1));
+        if (display.length === 1) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }, 40);
+    } else {
+      timer = setTimeout(() => {
+        setDisplay(current.substring(0, display.length + 1));
+        if (display.length + 1 === current.length) {
+          setIsDeleting(true);
+          setPause(true);
+        }
+      }, 90);
+    }
+
+    return () => clearTimeout(timer);
+  }, [display, isDeleting, pause, wordIndex]);
+
+  return (
+    <span className="inline-block font-['Instrument_Serif',_'Geist_Pixel',_serif] italic text-gradient" aria-label={words[wordIndex]}>
+      {display}
+      <span className="inline-block w-[3px] h-[0.85em] ml-1 align-middle bg-[color:var(--brand-2)] animate-pulse-glow" />
+    </span>
+  );
+}
+
 /* ---------------- Logo marquee ---------------- */
 function LogoMarquee() {
   const items = ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM", "EdTech", "FinTech", "DBMS", "CSS", "SAD", "ITIS", "DMT", "WAPO", "DS", "RAO"];
