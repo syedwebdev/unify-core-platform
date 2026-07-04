@@ -98,7 +98,7 @@ function Hero() {
           </a>
           <h1 className="mt-6 font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
             Building the Core <br className="hidden sm:block" />
-            Infrastructure for <span className="text-gradient">Modern Business Software</span>
+            <TypingWord /> for <span className="text-gradient">Modern Business Software</span>
           </h1>
           <div className="mt-6 flex justify-center">
             <span className="typewriter text-base sm:text-xl md:text-2xl text-foreground/90">
