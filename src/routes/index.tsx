@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -98,7 +98,7 @@ function Hero() {
           </a>
           <h1 className="mt-6 font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
             Building the Core <br className="hidden sm:block" />
-            Infrastructure for <span className="text-gradient">Modern Business Software</span>
+            <TypingWord /> for <span className="text-gradient">Modern Business Software</span>
           </h1>
           <div className="mt-6 flex justify-center">
             <span className="typewriter text-base sm:text-xl md:text-2xl text-foreground/90">
@@ -150,6 +150,48 @@ function FloatingChip({ className = "", icon, label, sub }: any) {
         <div className="text-xs text-muted-foreground">{sub}</div>
       </div>
     </div>
+  );
+}
+
+function TypingWord() {
+  const words = ["Central platform", "Technology ecosystem", "Infrastructure"];
+  const [display, setDisplay] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [pause, setPause] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex];
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (pause) {
+      timer = setTimeout(() => setPause(false), 1600);
+    } else if (isDeleting) {
+      timer = setTimeout(() => {
+        setDisplay(current.substring(0, display.length - 1));
+        if (display.length === 1) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }, 40);
+    } else {
+      timer = setTimeout(() => {
+        setDisplay(current.substring(0, display.length + 1));
+        if (display.length + 1 === current.length) {
+          setIsDeleting(true);
+          setPause(true);
+        }
+      }, 90);
+    }
+
+    return () => clearTimeout(timer);
+  }, [display, isDeleting, pause, wordIndex]);
+
+  return (
+    <span className="inline-block font-['Instrument_Serif',_'Geist_Pixel',_serif] italic text-gradient" aria-label={words[wordIndex]}>
+      {display}
+      <span className="inline-block w-[3px] h-[0.85em] ml-1 align-middle bg-[color:var(--brand-2)] animate-pulse-glow" />
+    </span>
   );
 }
 
