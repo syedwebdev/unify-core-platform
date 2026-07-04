@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
