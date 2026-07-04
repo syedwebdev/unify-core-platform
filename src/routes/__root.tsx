@@ -4,10 +4,11 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -84,13 +85,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "One organization. Many specialized departments. Building the core infrastructure for modern business software." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "/sgt-logo.png" },
+      { name: "twitter:image", content: "/sgt-logo.png" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/sgt-logo.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/sgt-logo.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Geist+Mono:wght@500;700&family=VT323&family=Geist+Pixel&family=Instrument+Serif:ital@0;1&display=swap" },
@@ -121,8 +125,72 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PageTransitionLoader />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
+  );
+}
+
+function PageTransitionLoader() {
+  const isLoading = useRouterState({ select: (s) => s.isLoading || s.isTransitioning });
+  const [visible, setVisible] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
+
+  useEffect(() => {
+    // Show a brief intro reveal on first mount
+    if (firstLoad) {
+      setVisible(true);
+      const t = setTimeout(() => {
+        setVisible(false);
+        setFirstLoad(false);
+      }, 900);
+      return () => clearTimeout(t);
+    }
+  }, [firstLoad]);
+
+  useEffect(() => {
+    if (firstLoad) return;
+    if (isLoading) {
+      setVisible(true);
+    } else {
+      const t = setTimeout(() => setVisible(false), 350);
+      return () => clearTimeout(t);
+    }
+  }, [isLoading, firstLoad]);
+
+  return (
+    <div
+      aria-hidden={!visible}
+      className={`pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-background transition-opacity duration-500 ${
+        visible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(120,120,255,0.12),transparent_60%)]" />
+      <div className="relative flex flex-col items-center gap-6">
+        <div className="relative">
+          <div className="absolute inset-0 -m-6 rounded-full bg-primary/20 blur-2xl animate-pulse" />
+          <img
+            src="/sgt-logo.png"
+            alt="SGT"
+            className="relative h-16 w-16 object-contain animate-[logoReveal_900ms_cubic-bezier(0.22,1,0.36,1)_forwards]"
+          />
+        </div>
+        <div className="h-[2px] w-40 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-[loaderSweep_1.2s_ease-in-out_infinite]" />
+        </div>
+      </div>
+      <style>{`
+        @keyframes logoReveal {
+          0% { opacity: 0; transform: scale(0.85); filter: blur(8px); }
+          60% { opacity: 1; filter: blur(0); }
+          100% { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+        @keyframes loaderSweep {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(300%); }
+        }
+      `}</style>
+    </div>
   );
 }
