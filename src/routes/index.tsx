@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
 import { useState, useEffect, lazy, Suspense } from "react";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
-import { MagneticButton } from "@/components/motion/primitives";
+import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
+import { EcosystemMap } from "@/components/ecosystem/EcosystemMap";
 import { motion } from "framer-motion";
 
 const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
@@ -29,6 +30,7 @@ function Index() {
       <Hero />
       <LogoMarquee />
       <Overview />
+      <EcosystemSection />
       <Departments />
       <SySoftShowcase />
       <WhyUs />
@@ -309,6 +311,39 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
       <span className="h-1.5 w-1.5 rounded-full bg-gradient-brand" />
       {children}
     </div>
+  );
+}
+
+/* ---------------- Ecosystem Map ---------------- */
+function EcosystemSection() {
+  return (
+    <section id="ecosystem-map" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 grid-bg opacity-30" />
+      </div>
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionEyebrow>The SGT Ecosystem</SectionEyebrow>
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
+            One core.<br />
+            <span className="text-gradient">Fifteen connected divisions.</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground text-lg">
+            SGT sits at the center — every department connected, exchanging expertise,
+            data and infrastructure through a shared engineering core.
+          </p>
+        </div>
+        <motion.div
+          className="mt-16"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <EcosystemMap />
+        </motion.div>
+      </div>
+    </section>
   );
 }
 
