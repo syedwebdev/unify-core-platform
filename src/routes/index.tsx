@@ -895,33 +895,55 @@ function Industries() {
 
 /* ---------------- Stats ---------------- */
 function Stats() {
-  const stats = [
-    { v: "15", l: "Departments" },
-    { v: "18+", l: "Products across divisions" },
-    { v: "38", l: "Countries" },
-    { v: "9.4B", l: "API Requests / mo" },
-    { v: "620M", l: "Orders Processed" },
-    { v: "1.2B", l: "AI Requests" },
-    { v: "99.99%", l: "System Uptime" },
-    { v: "24×7", l: "Global Support" },
+  const stats: { n: number; suffix: string; l: string }[] = [
+    { n: 15, suffix: "", l: "Departments" },
+    { n: 18, suffix: "+", l: "Products across divisions" },
+    { n: 38, suffix: "", l: "Countries" },
+    { n: 9.4, suffix: "B", l: "API Requests / mo" },
+    { n: 620, suffix: "M", l: "Orders Processed" },
+    { n: 1.2, suffix: "B", l: "AI Requests" },
+    { n: 99.99, suffix: "%", l: "System Uptime" },
+    { n: 24, suffix: "×7", l: "Global Support" },
   ];
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="glass rounded-3xl p-8 md:p-14 relative overflow-hidden">
           <div className="absolute inset-0 grid-bg opacity-40" />
+          <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-[color:var(--brand)] opacity-30 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[color:var(--brand-2)] opacity-25 blur-3xl" />
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((s) => (
-              <div key={s.l}>
-                <div className="font-display text-3xl md:text-5xl font-bold text-gradient">{s.v}</div>
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.l}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
+              >
+                <div className="font-display text-3xl md:text-5xl font-bold text-gradient tabular-nums">
+                  {Number.isInteger(s.n) ? (
+                    <CountUp to={s.n} suffix={s.suffix} />
+                  ) : (
+                    <FloatCountUp to={s.n} suffix={s.suffix} />
+                  )}
+                </div>
                 <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
-              </div>
+                <div className="mt-3 h-[3px] w-16 rounded-full bg-gradient-brand opacity-60" />
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
     </section>
   );
+}
+
+function FloatCountUp({ to, suffix }: { to: number; suffix: string }) {
+  // Multiply by 100 for two-decimal precision
+  const decimals = to % 1 === 0 ? 0 : (to.toString().split(".")[1]?.length ?? 1);
+  const factor = Math.pow(10, decimals);
+  return <CountUp to={to * factor} suffix={suffix} prefix="" />; // We display as-is; wrap:
 }
 
 /* ---------------- Testimonials ---------------- */
