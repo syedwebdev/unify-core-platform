@@ -445,27 +445,57 @@ function SySoftShowcase() {
 
 function ProductCard({ name, desc, tags, category }: { name: string; desc: string; tags: string[]; category: string }) {
   return (
-    <div className="group relative glass rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.06]">
-      <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-30 blur-3xl transition-opacity" />
+    <TiltCard intensity={5} className="group relative glass rounded-2xl p-6 overflow-hidden animated-border h-full">
+      <span className="animated-border-inner" aria-hidden />
+      <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-40 blur-3xl transition-opacity duration-500" />
       <div className="flex items-center justify-between">
-        <div className="h-10 w-10 rounded-xl bg-gradient-brand grid place-items-center text-white font-bold text-sm shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
+        <div className="h-10 w-10 rounded-xl bg-gradient-brand grid place-items-center text-white font-bold text-sm shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)] group-hover:scale-110 transition-transform">
           {name[0]}
         </div>
-        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{category}</span>
+        <span className="inline-flex items-center gap-1 text-[10px] uppercase tracking-widest text-muted-foreground">
+          <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" />
+          Live
+        </span>
       </div>
+      {/* Mini sparkline dashboard */}
+      <MiniSparkline />
       <h4 className="mt-4 font-display text-lg font-semibold">{name}</h4>
       <p className="mt-1 text-sm text-muted-foreground min-h-[40px]">{desc}</p>
       <div className="mt-4 flex flex-wrap gap-1.5">
         {tags.map((t) => (
           <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
         ))}
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{category}</span>
       </div>
       <div className="mt-5 flex items-center justify-between text-sm">
-        <a href="#" className="inline-flex items-center gap-1 text-foreground hover:text-[color:var(--brand-2)] transition">
-          Learn more <ArrowRight className="h-3.5 w-3.5" />
+        <a href="#" className="inline-flex items-center gap-1 text-foreground hover:text-[color:var(--brand-2)] transition group/btn">
+          Learn more <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-1 transition-transform" />
         </a>
         <span className="text-[10px] text-muted-foreground">by SySoft Systems</span>
       </div>
+    </TiltCard>
+  );
+}
+
+function MiniSparkline() {
+  const pts = useMemo(() => {
+    return Array.from({ length: 24 }, (_, i) => {
+      const y = 20 + Math.sin(i * 0.6) * 8 + Math.random() * 6;
+      return `${(i / 23) * 100},${40 - y}`;
+    }).join(" ");
+  }, []);
+  return (
+    <div className="mt-4 h-10 rounded-lg bg-white/[0.03] border border-white/5 px-2 py-1 overflow-hidden">
+      <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="h-full w-full">
+        <defs>
+          <linearGradient id="spark" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="oklch(0.72 0.16 232)" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="oklch(0.72 0.16 232)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <polyline points={`0,40 ${pts} 100,40`} fill="url(#spark)" />
+        <polyline points={pts} fill="none" stroke="oklch(0.85 0.15 200)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
+      </svg>
     </div>
   );
 }
@@ -535,35 +565,45 @@ function Departments() {
             direction and roadmap — collaborating on a shared engineering core.
           </p>
         </div>
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {depts.map((d) => (
-            <div key={d.code} className="group relative glass rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.06]">
-              <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-30 blur-3xl transition-opacity" />
-              <div className="flex items-center justify-between">
-                <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
-                  <d.icon className="h-5 w-5" />
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ perspective: 1200 }}>
+          {depts.map((d, i) => (
+            <motion.div
+              key={d.code}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <TiltCard intensity={6} className="group relative glass rounded-2xl p-6 overflow-hidden animated-border h-full">
+                <span className="animated-border-inner" aria-hidden />
+                <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-40 blur-3xl transition-opacity duration-500" />
+                <div className="flex items-center justify-between">
+                  <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                    <d.icon className="h-5 w-5" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Division</span>
                 </div>
-                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Division</span>
-              </div>
-              <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground min-h-[44px]">{d.desc}</p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {d.focus.map((t) => (
-                  <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
-                ))}
-              </div>
-              <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
-                <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
-              </div>
-              <div className="mt-4">
-                <button
-                  onClick={() => setActive(d)}
-                  className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition cursor-pointer"
-                >
-                  View department <ArrowRight className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </div>
+                <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground min-h-[44px]">{d.desc}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {d.focus.map((t) => (
+                    <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
+                  ))}
+                </div>
+                <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
+                  <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
+                </div>
+                <div className="mt-4">
+                  <button
+                    onClick={() => setActive(d)}
+                    className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition cursor-pointer group/btn"
+                  >
+                    View department
+                    <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </TiltCard>
+            </motion.div>
           ))}
         </div>
       </div>
