@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState, useEffect, useMemo, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, useRef, lazy, Suspense } from "react";
+import { useInView } from "framer-motion";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
 import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
 import { EcosystemMap } from "@/components/ecosystem/EcosystemMap";
@@ -940,10 +941,30 @@ function Stats() {
 }
 
 function FloatCountUp({ to, suffix }: { to: number; suffix: string }) {
-  // Multiply by 100 for two-decimal precision
-  const decimals = to % 1 === 0 ? 0 : (to.toString().split(".")[1]?.length ?? 1);
-  const factor = Math.pow(10, decimals);
-  return <CountUp to={to * factor} suffix={suffix} prefix="" />; // We display as-is; wrap:
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [val, setVal] = useState(0);
+  const decimals = to.toString().split(".")[1]?.length ?? 0;
+  useEffect(() => {
+    if (!inView) return;
+    const start = performance.now();
+    const duration = 1800;
+    let raf = 0;
+    const step = (t: number) => {
+      const p = Math.min(1, (t - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(to * eased);
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, to]);
+  return (
+    <span ref={ref}>
+      {val.toFixed(decimals)}
+      {suffix}
+    </span>
+  );
 }
 
 /* ---------------- Testimonials ---------------- */
