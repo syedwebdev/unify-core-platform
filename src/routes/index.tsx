@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
 import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
 import { EcosystemMap } from "@/components/ecosystem/EcosystemMap";
