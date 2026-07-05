@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { NeuralBackground } from "@/components/hero/NeuralBackground";
+import { MagneticButton } from "@/components/motion/primitives";
+import { motion } from "framer-motion";
+
+const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -83,14 +88,44 @@ function Logo({ className = "h-6 w-6" }: { className?: string }) {
 
 /* ---------------- Hero ---------------- */
 function Hero() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const enable3D =
+    mounted &&
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 768px)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
-    <section className="relative pt-36 pb-24 md:pt-44 md:pb-32">
+    <section className="relative pt-36 pb-24 md:pt-44 md:pb-40 overflow-hidden">
+      {/* Layered atmospheric background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-bg opacity-70" />
+        <div className="absolute inset-0 grid-bg opacity-60" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        <NeuralBackground className="absolute inset-0 h-full w-full opacity-70" />
+        {/* Aurora blobs */}
+        <div className="absolute -top-20 -left-20 h-[520px] w-[520px] rounded-full bg-[color:var(--brand)] opacity-25 blur-[120px] animate-float" />
+        <div className="absolute top-20 right-[-10%] h-[560px] w-[560px] rounded-full bg-[color:var(--brand-2)] opacity-20 blur-[130px] animate-float [animation-delay:2s]" />
       </div>
+
+      {/* 3D scene layer */}
+      {enable3D && (
+        <div className="pointer-events-none absolute inset-0 -z-[5] opacity-90">
+          <Suspense fallback={null}>
+            <HeroScene />
+          </Suspense>
+          {/* soft fade to content */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[color:var(--background)]" />
+        </div>
+      )}
+
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-4xl text-center">
+        <motion.div
+          className="mx-auto max-w-4xl text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
           <a href="#platform" className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" />
             The Official Corporate Platform of SGT
@@ -111,16 +146,29 @@ function Hero() {
             generation of business software.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#departments" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition">
+            <MagneticButton
+              href="#departments"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition"
+            >
               Explore Departments <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#ecosystem" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition">
+            </MagneticButton>
+            <MagneticButton
+              href="#ecosystem"
+              strength={0.25}
+              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition"
+            >
               Discover the Ecosystem
-            </a>
+            </MagneticButton>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="relative mt-16 md:mt-20">
+        <motion.div
+          className="relative mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="absolute -inset-4 rounded-3xl bg-gradient-brand opacity-30 blur-3xl -z-10" />
           <div className="glass rounded-2xl p-2 shadow-[var(--shadow-card)]">
             <img
@@ -135,7 +183,7 @@ function Hero() {
           <FloatingChip className="hidden md:flex left-[-2%] top-[20%] animate-float" icon={<Bot className="h-4 w-4" />} label="AI Assistant" sub="+18.6% forecast" />
           <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<Building2 className="h-4 w-4" />} label="15 Departments" sub="Unified ecosystem" />
           <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<BrainCircuit className="h-4 w-4" />} label="AIAB · Research" sub="ML · DL · Applied AI" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
