@@ -5,6 +5,7 @@ import { useInView } from "framer-motion";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
 import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
 import { EcosystemMap } from "@/components/ecosystem/EcosystemMap";
+import { NeuralSection } from "@/components/ai/NeuralSection";
 import { motion } from "framer-motion";
 
 const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
@@ -36,6 +37,7 @@ function Index() {
       <SySoftShowcase />
       <WhyUs />
       <AIPlatform />
+      <NeuralSection />
       <TechStack />
       <Industries />
       <Stats />
