@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
 import { useState, useEffect, useMemo, useRef, lazy, Suspense } from "react";
 import { useInView } from "framer-motion";
@@ -21,60 +21,50 @@ import {
   HardDrive, Network, Radar, FlaskConical, Handshake,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-function Index() {
+export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Nav />
-      <Hero />
-      <LogoMarquee />
-      <Overview />
-      <EcosystemSection />
-      <Departments />
-      <SySoftShowcase />
-      <WhyUs />
-      <AIPlatform />
-      <NeuralSection />
-      <TechStack />
-      <Industries />
-      <Stats />
-      <Testimonials />
-      <Security />
-      <Integrations />
-      <Developers />
-      <Engagement />
-      <Vision />
-      <CTA />
+      {children}
       <Footer />
     </div>
   );
 }
 
 /* ---------------- Nav ---------------- */
-function Nav() {
-  const links = ["Ecosystem", "Departments", "Platform", "Research", "Industries", "Company"];
+export function Nav() {
+  const links: { label: string; to: string }[] = [
+    { label: "Ecosystem", to: "/ecosystem" },
+    { label: "Departments", to: "/departments" },
+    { label: "Platform", to: "/platform" },
+    { label: "Research", to: "/research" },
+    { label: "Industries", to: "/industries" },
+    { label: "Company", to: "/company" },
+  ];
   return (
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
       <div className="glass rounded-full px-3 py-2 flex items-center gap-2 w-full max-w-5xl">
-        <a href="#" className="flex items-center gap-2 pl-3 pr-4 py-1.5">
+        <Link to="/" className="flex items-center gap-2 pl-3 pr-4 py-1.5">
           <Logo className="h-7 w-7" />
           <span className="font-display font-bold tracking-tight text-lg">SGT</span>
-        </a>
+        </Link>
         <nav className="hidden md:flex items-center gap-1 mx-auto text-sm text-muted-foreground">
           {links.map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="px-3 py-1.5 rounded-full hover:text-foreground hover:bg-white/5 transition">
-              {l}
-            </a>
+            <Link
+              key={l.to}
+              to={l.to}
+              activeProps={{ className: "px-3 py-1.5 rounded-full text-foreground bg-white/5" }}
+              inactiveProps={{ className: "px-3 py-1.5 rounded-full hover:text-foreground hover:bg-white/5 transition" }}
+            >
+              {l.label}
+            </Link>
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-2">
-          <a href="#contact" className="hidden sm:inline text-sm px-4 py-2 rounded-full hover:bg-white/5 transition">Sign in</a>
-          <a href="#products" className="text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition inline-flex items-center gap-1.5">
+          <Link to="/signin" className="hidden sm:inline text-sm px-4 py-2 rounded-full hover:bg-white/5 transition">Sign in</Link>
+          <Link to="/get-started" className="text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition inline-flex items-center gap-1.5">
             Get started <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </header>
