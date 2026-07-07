@@ -71,7 +71,7 @@ export function Nav() {
   );
 }
 
-function Logo({ className = "h-6 w-6" }: { className?: string }) {
+export function Logo({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <img
       src="/sgt-logo.png"
@@ -82,7 +82,7 @@ function Logo({ className = "h-6 w-6" }: { className?: string }) {
 }
 
 /* ---------------- Hero ---------------- */
-function Hero() {
+export function Hero() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
   const enable3D =
@@ -184,7 +184,7 @@ function Hero() {
   );
 }
 
-function FloatingChip({ className = "", icon, label, sub }: any) {
+export function FloatingChip({ className = "", icon, label, sub }: any) {
   return (
     <div className={`absolute glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-[var(--shadow-card)] ${className}`}>
       <div className="h-9 w-9 rounded-xl bg-gradient-brand grid place-items-center text-white">{icon}</div>
@@ -196,7 +196,7 @@ function FloatingChip({ className = "", icon, label, sub }: any) {
   );
 }
 
-function TypingWord() {
+export function TypingWord() {
   const words = ["Central platform", "Technology ecosystem", "Infrastructure"];
   const [display, setDisplay] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
@@ -239,7 +239,7 @@ function TypingWord() {
 }
 
 /* ---------------- Logo marquee ---------------- */
-function LogoMarquee() {
+export function LogoMarquee() {
   const items = ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM", "EdTech", "FinTech", "DBMS", "CSS", "SAD", "ITIS", "DMT", "WAPO", "DS", "RAO"];
   return (
     <section id="ecosystem" className="py-12 border-y border-white/5">
@@ -260,7 +260,7 @@ function LogoMarquee() {
 }
 
 /* ---------------- Overview ---------------- */
-function Overview() {
+export function Overview() {
   const pillars = [
     { icon: Building2, title: "One Organization", text: "SGT is the parent technology organization behind every department in the ecosystem." },
     { icon: Layers, title: "Specialized Divisions", text: "Fifteen independent departments, each owning a distinct technology domain." },
@@ -298,7 +298,7 @@ function Overview() {
   );
 }
 
-function SectionEyebrow({ children }: { children: React.ReactNode }) {
+export function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return (
     <div className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-muted-foreground uppercase tracking-[0.18em]">
       <span className="h-1.5 w-1.5 rounded-full bg-gradient-brand" />
@@ -308,7 +308,7 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
 }
 
 /* ---------------- Ecosystem Map ---------------- */
-function EcosystemSection() {
+export function EcosystemSection() {
   return (
     <section id="ecosystem-map" className="py-24 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -341,7 +341,7 @@ function EcosystemSection() {
 }
 
 /* ---------------- SySoft Systems showcase ---------------- */
-function SySoftShowcase() {
+export function SySoftShowcase() {
   const categories: { name: string; icon: any; items: { name: string; desc: string; tags: string[] }[] }[] = [
     {
       name: "Commerce",
@@ -436,7 +436,7 @@ function SySoftShowcase() {
   );
 }
 
-function ProductCard({ name, desc, tags, category }: { name: string; desc: string; tags: string[]; category: string }) {
+export function ProductCard({ name, desc, tags, category }: { name: string; desc: string; tags: string[]; category: string }) {
   return (
     <TiltCard intensity={5} className="group relative glass rounded-2xl p-6 overflow-hidden animated-border h-full">
       <span className="animated-border-inner" aria-hidden />
@@ -470,7 +470,7 @@ function ProductCard({ name, desc, tags, category }: { name: string; desc: strin
   );
 }
 
-function MiniSparkline() {
+export function MiniSparkline() {
   const pts = useMemo(() => {
     return Array.from({ length: 24 }, (_, i) => {
       const y = 20 + Math.sin(i * 0.6) * 8 + Math.random() * 6;
@@ -494,7 +494,7 @@ function MiniSparkline() {
 }
 
 /* ---------------- Departments ---------------- */
-function Departments() {
+export function Departments() {
   const depts: Dept[] = [
     { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences.",
       expertise: ["Design systems & component libraries", "Server-rendered React on the edge", "PWA & offline-first experiences", "Web performance & Core Web Vitals"],
@@ -610,7 +610,7 @@ type Dept = {
   focus: string[]; roadmap: string; expertise: string[]; initiatives: string[];
 };
 
-function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose: () => void }) {
+export function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose: () => void }) {
   const open = !!dept;
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
@@ -685,7 +685,7 @@ function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose: () => 
   );
 }
 
-function ModalBlock({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+export function ModalBlock({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
     <div>
       <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
@@ -698,7 +698,7 @@ function ModalBlock({ title, icon, children }: { title: string; icon: React.Reac
 }
 
 /* ---------------- Why Us ---------------- */
-function WhyUs() {
+export function WhyUs() {
   const feats = [
     { icon: Cloud, t: "Modern Cloud", d: "Kubernetes-grade infrastructure built to scale globally." },
     { icon: Bot, t: "AI Workflows", d: "Applied AI from the AIAB division across the ecosystem." },
@@ -739,7 +739,7 @@ function WhyUs() {
 }
 
 /* ---------------- AI Platform ---------------- */
-function AIPlatform() {
+export function AIPlatform() {
   const bullets = [
     "Smart reports across every division",
     "Predictive analytics on live data",
@@ -798,7 +798,7 @@ function AIPlatform() {
   );
 }
 
-function ChatBubble({ role, children }: { role: "you" | "ai"; children: React.ReactNode }) {
+export function ChatBubble({ role, children }: { role: "you" | "ai"; children: React.ReactNode }) {
   const isAi = role === "ai";
   return (
     <div className={`flex ${isAi ? "" : "justify-end"}`}>
@@ -809,7 +809,7 @@ function ChatBubble({ role, children }: { role: "you" | "ai"; children: React.Re
   );
 }
 
-function MiniChart() {
+export function MiniChart() {
   const pts = [10, 22, 18, 30, 26, 44, 38, 60, 54, 72, 68, 88];
   const max = Math.max(...pts);
   const path = pts.map((v, i) => `${(i / (pts.length - 1)) * 100},${100 - (v / max) * 90}`).join(" ");
@@ -828,7 +828,7 @@ function MiniChart() {
 }
 
 /* ---------------- Tech Stack ---------------- */
-function TechStack() {
+export function TechStack() {
   const groups = [
     { title: "Frontend", items: ["Next.js", "React", "Tailwind CSS", "Flutter"] },
     { title: "Backend", items: ["Laravel", "Node.js", "PostgreSQL", "Redis", "Docker", "Nginx"] },
@@ -862,7 +862,7 @@ function TechStack() {
 }
 
 /* ---------------- Industries ---------------- */
-function Industries() {
+export function Industries() {
   const items = ["Restaurants", "Retail", "Healthcare", "Education", "Corporate Offices", "Hotels", "Manufacturing", "Logistics", "Government", "Small Businesses", "Enterprises", "Franchises"];
   return (
     <section id="industries" className="py-24 md:py-32">
@@ -887,7 +887,7 @@ function Industries() {
 }
 
 /* ---------------- Stats ---------------- */
-function Stats() {
+export function Stats() {
   const stats: { n: number; suffix: string; l: string }[] = [
     { n: 15, suffix: "", l: "Departments" },
     { n: 18, suffix: "+", l: "Products across divisions" },
@@ -932,7 +932,7 @@ function Stats() {
   );
 }
 
-function FloatCountUp({ to, suffix }: { to: number; suffix: string }) {
+export function FloatCountUp({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [val, setVal] = useState(0);
@@ -960,7 +960,7 @@ function FloatCountUp({ to, suffix }: { to: number; suffix: string }) {
 }
 
 /* ---------------- Testimonials ---------------- */
-function Testimonials() {
+export function Testimonials() {
   const t = [
     { q: "Working with SGT feels like partnering with a full technology organization — each department a specialist in its domain.", n: "Ananya Rao", r: "COO, Metro Foods" },
     { q: "MediCore ERP by SySoft Systems transformed our hospital. Billing, EMR and pharmacy — finally one truth.", n: "Dr. Rajiv Menon", r: "Director, Aster Health" },
@@ -998,7 +998,7 @@ function Testimonials() {
 }
 
 /* ---------------- Security ---------------- */
-function Security() {
+export function Security() {
   const items = [
     { icon: Lock, t: "End-to-end Encryption", d: "TLS 1.3 in transit, AES-256 at rest across every product." },
     { icon: ShieldCheck, t: "Role-based Access", d: "Fine-grained RBAC, SSO and SCIM provisioning." },
@@ -1033,7 +1033,7 @@ function Security() {
 }
 
 /* ---------------- Integrations ---------------- */
-function Integrations() {
+export function Integrations() {
   const items = ["Stripe", "Razorpay", "PayPal", "WhatsApp", "Google Maps", "Twilio SMS", "Sendgrid", "AWS S3", "QuickBooks", "Zoho", "Salesforce", "Slack", "Zapier", "HubSpot", "Meta Ads", "Google Ads"];
   return (
     <section className="py-24 md:py-32">
@@ -1057,7 +1057,7 @@ function Integrations() {
 }
 
 /* ---------------- Developers ---------------- */
-function Developers() {
+export function Developers() {
   return (
     <section id="developers" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-14 items-center">
@@ -1112,7 +1112,7 @@ const insight = await sgt.aiab.suggest(order.id);`}
 }
 
 /* ---------------- Engagement Models ---------------- */
-function Engagement() {
+export function Engagement() {
   const models = [
     {
       name: "Partnership",
@@ -1197,7 +1197,7 @@ function Engagement() {
 }
 
 /* ---------------- Vision ---------------- */
-function Vision() {
+export function Vision() {
   return (
     <section className="py-24 md:py-32">
       <div className="mx-auto max-w-5xl px-6 text-center">
@@ -1212,7 +1212,7 @@ function Vision() {
 }
 
 /* ---------------- CTA ---------------- */
-function CTA() {
+export function CTA() {
   return (
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-7xl px-6">
@@ -1241,7 +1241,7 @@ function CTA() {
 }
 
 /* ---------------- Footer ---------------- */
-function Footer() {
+export function Footer() {
   const cols = [
     { t: "Departments", l: ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM"] },
     { t: "More Divisions", l: ["EdTech", "FinTech", "DBMS", "CSS", "SAD"] },
