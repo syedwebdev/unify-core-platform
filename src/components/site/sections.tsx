@@ -37,6 +37,7 @@ export function Nav() {
   const links: { label: string; to: string }[] = [
     { label: "Ecosystem", to: "/ecosystem" },
     { label: "Departments", to: "/departments" },
+    { label: "Group", to: "/group" },
     { label: "Platform", to: "/platform" },
     { label: "Research", to: "/research" },
     { label: "Industries", to: "/industries" },
