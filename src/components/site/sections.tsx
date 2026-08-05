@@ -19,6 +19,7 @@ import {
   Check, Github, Twitter, Linkedin, Youtube,
   Server, BrainCircuit, Repeat, Briefcase, BookOpen, Banknote,
   HardDrive, Network, Radar, FlaskConical, Handshake,
+  Menu, X,
 } from "lucide-react";
 
 export function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -41,9 +42,11 @@ export function Nav() {
     { label: "Industries", to: "/industries" },
     { label: "Company", to: "/company" },
   ];
+  const [open, setOpen] = useState(false);
   return (
     <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
-      <div className="glass rounded-full px-3 py-2 flex items-center gap-2 w-full max-w-5xl">
+      <div className="w-full max-w-5xl">
+      <div className="glass rounded-full px-3 py-2 flex items-center gap-2">
         <Link to="/" className="flex items-center gap-2 pl-3 pr-4 py-1.5">
           <Logo className="h-7 w-7" />
           <span className="font-display font-bold tracking-tight text-lg">SGT</span>
@@ -60,12 +63,41 @@ export function Nav() {
             </Link>
           ))}
         </nav>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-2 shrink-0">
           <Link to="/signin" className="hidden sm:inline text-sm px-4 py-2 rounded-full hover:bg-white/5 transition">Sign in</Link>
-          <Link to="/get-started" className="text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition inline-flex items-center gap-1.5">
+          <Link to="/get-started" className="hidden xs:inline-flex md:inline-flex text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition items-center gap-1.5">
             Get started <ArrowRight className="h-4 w-4" />
           </Link>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-foreground transition hover:bg-white/10"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+      </div>
+      {open && (
+        <nav className="md:hidden mt-2 glass rounded-3xl p-3 flex flex-col gap-1 text-sm">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              onClick={() => setOpen(false)}
+              activeProps={{ className: "px-4 py-3 rounded-2xl text-foreground bg-white/10" }}
+              inactiveProps={{ className: "px-4 py-3 rounded-2xl text-muted-foreground hover:text-foreground hover:bg-white/5 transition" }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div className="mt-1 grid grid-cols-2 gap-2">
+            <Link to="/signin" onClick={() => setOpen(false)} className="px-4 py-3 rounded-2xl border border-white/10 text-center">Sign in</Link>
+            <Link to="/get-started" onClick={() => setOpen(false)} className="px-4 py-3 rounded-2xl bg-gradient-brand text-white font-medium text-center">Get started</Link>
+          </div>
+        </nav>
+      )}
       </div>
     </header>
   );
