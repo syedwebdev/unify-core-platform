@@ -65,7 +65,7 @@ export function Nav() {
         </nav>
         <div className="ml-auto flex items-center gap-2 shrink-0">
           <Link to="/signin" className="hidden sm:inline text-sm px-4 py-2 rounded-full hover:bg-white/5 transition">Sign in</Link>
-          <Link to="/get-started" className="hidden xs:inline-flex md:inline-flex text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition items-center gap-1.5">
+          <Link to="/get-started" className="hidden sm:inline-flex text-sm px-4 py-2 rounded-full bg-gradient-brand text-white font-medium shadow-[0_8px_30px_-8px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition items-center gap-1.5">
             Get started <ArrowRight className="h-4 w-4" />
           </Link>
           <button
