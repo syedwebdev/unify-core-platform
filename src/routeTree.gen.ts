@@ -13,6 +13,7 @@ import { Route as SigninRouteImport } from './routes/signin'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PlatformRouteImport } from './routes/platform'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as GroupRouteImport } from './routes/group'
 import { Route as GetStartedRouteImport } from './routes/get-started'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as DepartmentsRouteImport } from './routes/departments'
@@ -37,6 +38,11 @@ const PlatformRoute = PlatformRouteImport.update({
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GroupRoute = GroupRouteImport.update({
+  id: '/group',
+  path: '/group',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetStartedRoute = GetStartedRouteImport.update({
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/departments': typeof DepartmentsRoute
   '/ecosystem': typeof EcosystemRoute
   '/get-started': typeof GetStartedRoute
+  '/group': typeof GroupRoute
   '/industries': typeof IndustriesRoute
   '/platform': typeof PlatformRoute
   '/research': typeof ResearchRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/departments': typeof DepartmentsRoute
   '/ecosystem': typeof EcosystemRoute
   '/get-started': typeof GetStartedRoute
+  '/group': typeof GroupRoute
   '/industries': typeof IndustriesRoute
   '/platform': typeof PlatformRoute
   '/research': typeof ResearchRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/departments': typeof DepartmentsRoute
   '/ecosystem': typeof EcosystemRoute
   '/get-started': typeof GetStartedRoute
+  '/group': typeof GroupRoute
   '/industries': typeof IndustriesRoute
   '/platform': typeof PlatformRoute
   '/research': typeof ResearchRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/departments'
     | '/ecosystem'
     | '/get-started'
+    | '/group'
     | '/industries'
     | '/platform'
     | '/research'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/departments'
     | '/ecosystem'
     | '/get-started'
+    | '/group'
     | '/industries'
     | '/platform'
     | '/research'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/departments'
     | '/ecosystem'
     | '/get-started'
+    | '/group'
     | '/industries'
     | '/platform'
     | '/research'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   DepartmentsRoute: typeof DepartmentsRoute
   EcosystemRoute: typeof EcosystemRoute
   GetStartedRoute: typeof GetStartedRoute
+  GroupRoute: typeof GroupRoute
   IndustriesRoute: typeof IndustriesRoute
   PlatformRoute: typeof PlatformRoute
   ResearchRoute: typeof ResearchRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/group': {
+      id: '/group'
+      path: '/group'
+      fullPath: '/group'
+      preLoaderRoute: typeof GroupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-started': {
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   DepartmentsRoute: DepartmentsRoute,
   EcosystemRoute: EcosystemRoute,
   GetStartedRoute: GetStartedRoute,
+  GroupRoute: GroupRoute,
   IndustriesRoute: IndustriesRoute,
   PlatformRoute: PlatformRoute,
   ResearchRoute: ResearchRoute,
