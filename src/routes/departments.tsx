@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteLayout, Departments, SySoftShowcase, CTA } from "@/components/site/sections";
+import { SiteLayout, Departments, GroupStructure, SySoftShowcase, CTA } from "@/components/site/sections";
 
 export const Route = createFileRoute("/departments")({
   head: () => ({
     meta: [
-      { title: "Departments — SGT Core" },
-      { name: "description", content: "Fifteen specialized SGT divisions — WebDev, SySoft, AIAB, Auto RPA, ERP-CRM, EdTech, FinTech, DBMS, CSS, SAD, ITIS, DMT, WAPO, DS, RAO." },
-      { property: "og:title", content: "SGT Departments" },
-      { property: "og:description", content: "Fifteen divisions, one unified ecosystem." },
+      { title: "The 17 SYED MNCs — SGT" },
+      { name: "description", content: "Seventeen specialized SYED MNCs — 4GL, RAD, SAD, AUTO/RPA, DBMS, DMT, ONE, WEB-DEV, AI-ML-DL, CS, CSS, DS, ITIS, AIIS, NS, WAPL, AIAB — each with features, products, pricing, clients, challenges and roadmap." },
+      { property: "og:title", content: "The SYED MNCs" },
+      { property: "og:description", content: "Seventeen MNCs, one parent company." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -20,6 +20,7 @@ function DepartmentsPage() {
     <SiteLayout>
       <div className="pt-32" />
       <Departments />
+      <GroupStructure />
       <SySoftShowcase />
       <CTA />
     </SiteLayout>
