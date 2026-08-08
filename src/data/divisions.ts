@@ -243,3 +243,14 @@ export const nextSteps = [
   "Design global expansion master plan",
   "Build realistic revenue projections",
 ];
+
+export const establishSteps = [
+  "Register the entity in a primary jurisdiction, then open subsidiaries per region",
+  "Assign an IP & brand licence from SGT to the new MNC",
+  "Appoint leadership: CEO, CTO, Head of Delivery, Head of Revenue",
+  "Set up finance, compliance, tax and data-protection frameworks",
+  "Stand up shared SGT infrastructure: cloud, security, DevOps, support desk",
+  "Build the flagship product or service line, then a reference client",
+  "Launch go-to-market: partners, resellers, direct enterprise sales",
+  "Scale delivery centres and localise for each target market",
+];
