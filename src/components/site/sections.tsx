@@ -7,6 +7,7 @@ import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitive
 import { EcosystemMap } from "@/components/ecosystem/EcosystemMap";
 import { NeuralSection } from "@/components/ai/NeuralSection";
 import { motion } from "framer-motion";
+import { divisions, parent, nextSteps, establishSteps, type Division } from "@/data/divisions";
 
 const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
 import {
@@ -37,7 +38,6 @@ export function Nav() {
   const links: { label: string; to: string }[] = [
     { label: "Ecosystem", to: "/ecosystem" },
     { label: "Departments", to: "/departments" },
-    { label: "Group", to: "/group" },
     { label: "Platform", to: "/platform" },
     { label: "Research", to: "/research" },
     { label: "Industries", to: "/industries" },
@@ -526,111 +526,77 @@ export function MiniSparkline() {
   );
 }
 
-/* ---------------- Departments ---------------- */
+/* ---------------- Departments (the 17 SYED MNCs) ---------------- */
+const deptIcons: Record<string, any> = {
+  "4GL": Code2, RAD: Zap, SAD: Layers, "AUTO/RPA": Repeat, DBMS: Database,
+  DMT: LineChart, ONE: Briefcase, "WEB-DEV": Globe2, "AI-ML-DL": BrainCircuit,
+  CS: Cloud, CSS: Lock, DS: HardDrive, ITIS: Server, AIIS: Cpu, NS: Network,
+  WAPL: Workflow, AIAB: Bot,
+};
+
 export function Departments() {
-  const depts: Dept[] = [
-    { code: "WebDev", name: "WebDev", icon: Code2, desc: "Modern web engineering, design systems and progressive web platforms.", focus: ["React", "Next.js", "Design Systems"], roadmap: "Edge-first, AI-assisted web experiences.",
-      expertise: ["Design systems & component libraries", "Server-rendered React on the edge", "PWA & offline-first experiences", "Web performance & Core Web Vitals"],
-      initiatives: ["Unified SGT design system across all divisions", "AI-assisted content authoring for enterprise sites", "Edge-rendered storefronts for SySoft commerce products"] },
-    { code: "SySoft", name: "SySoft Systems", icon: Boxes, desc: "Enterprise SaaS product engineering across commerce, food, health, education and access.", focus: ["Multi-tenant SaaS", "POS", "ERP"], roadmap: "Verticalized AI-native business suites.",
-      expertise: ["Multi-tenant SaaS architecture", "Vertical ERP & POS engineering", "Offline-first mobile point-of-sale", "Billing, subscriptions & pricing engines"],
-      initiatives: ["ShopWave POS · omnichannel retail suite", "MediCore ERP · hospital-grade platform", "FoodoraX · cloud kitchen command center", "EduNova · next-gen campus management"] },
-    { code: "AIAB", name: "AIAB", icon: BrainCircuit, desc: "Artificial Intelligence, Machine Learning and Deep Learning research and applied models.", focus: ["ML", "Deep Learning", "LLMs"], roadmap: "Domain-tuned foundation models for enterprise.",
-      expertise: ["Applied LLMs & retrieval-augmented systems", "Computer vision & document AI", "Time-series forecasting & anomaly detection", "MLOps and model lifecycle"],
-      initiatives: ["Domain-tuned foundation model for retail", "Vision pipelines for healthcare imaging", "Forecasting engine embedded in ShopWave", "In-product AI assistant used across the ecosystem"] },
-    { code: "AutoRPA", name: "Auto RPA", icon: Repeat, desc: "Robotic Process Automation for repetitive back-office and operational workflows.", focus: ["RPA", "Workflow AI", "OCR"], roadmap: "Autonomous agents for enterprise operations.",
-      expertise: ["Attended & unattended bots", "Document OCR & IDP pipelines", "Workflow orchestration", "Human-in-the-loop automation"],
-      initiatives: ["Finance close automation for enterprise clients", "AP invoice ingestion with AIAB models", "Onboarding & KYC bots for FinTech partners"] },
-    { code: "ERP-CRM", name: "ERP-CRM", icon: Briefcase, desc: "End-to-end enterprise resource and customer relationship platforms.", focus: ["ERP", "CRM", "BPM"], roadmap: "Composable ERP with embedded intelligence.",
-      expertise: ["Finance, HR & supply-chain modules", "Sales pipelines & customer 360", "Business process modeling", "Cross-module reporting"],
-      initiatives: ["Composable ERP core shared across SySoft products", "Unified customer graph for the ecosystem", "AI copilots for finance and sales teams"] },
-    { code: "EdTech", name: "EdTech", icon: BookOpen, desc: "Learning platforms, assessment engines and campus operations technology.", focus: ["LMS", "Assessments", "Campus Ops"], roadmap: "Adaptive learning and AI tutors.",
-      expertise: ["LMS & content delivery at scale", "Proctored & adaptive assessments", "Campus & hostel operations", "Learning analytics"],
-      initiatives: ["Scholaro LMS · adaptive learning paths", "Examora · secure online assessments", "AI tutor prototypes with AIAB"] },
-    { code: "FinTech", name: "FinTech", icon: Banknote, desc: "Payments, ledgers and financial infrastructure for modern businesses.", focus: ["Payments", "Ledger", "Compliance"], roadmap: "Regulated open-finance rails.",
-      expertise: ["Payment orchestration & PSP integration", "Double-entry ledgers", "KYC / AML & compliance", "Merchant risk scoring"],
-      initiatives: ["Unified checkout across SySoft commerce apps", "Ledger service powering ERP-CRM", "Open-finance connectors for enterprise clients"] },
-    { code: "DBMS", name: "DBMS", icon: Database, desc: "Database engineering, data modeling and high-performance storage systems.", focus: ["PostgreSQL", "Redis", "Vector DB"], roadmap: "Multi-model, AI-ready data platforms.",
-      expertise: ["High-availability Postgres clusters", "Caching & in-memory systems", "Vector & search indices", "Query performance engineering"],
-      initiatives: ["Managed multi-tenant Postgres for the ecosystem", "Vector store for AIAB retrieval workloads", "Zero-downtime schema evolution framework"] },
-    { code: "CSS", name: "CSS", icon: Cloud, desc: "Cloud Services & Systems — elastic infrastructure powering every division.", focus: ["Kubernetes", "Multi-cloud", "Edge"], roadmap: "Fully autonomous cloud operations.",
-      expertise: ["Kubernetes platform engineering", "Multi-cloud & edge deployment", "Cost & capacity optimization", "SRE & incident response"],
-      initiatives: ["Internal developer platform for all divisions", "Edge runtime for latency-critical products", "Autonomous scaling & remediation with AIAB"] },
-    { code: "SAD", name: "SAD", icon: Layers, desc: "Systems Architecture & Design — the blueprints behind every SGT platform.", focus: ["Architecture", "Design Systems", "DDD"], roadmap: "Reference architectures for AI-native systems.",
-      expertise: ["Domain-driven design", "Event-driven & microservices architecture", "Reference architectures & standards", "Architecture review & governance"],
-      initiatives: ["SGT reference architecture v3", "AI-native service blueprint", "Cross-division architecture council"] },
-    { code: "ITIS", name: "ITIS", icon: Server, desc: "IT Infrastructure & Security — enterprise networks, identity and zero-trust.", focus: ["Zero-Trust", "Identity", "SecOps"], roadmap: "Autonomous threat response.",
-      expertise: ["Zero-trust networking", "Identity & SSO", "SecOps, SIEM & SOAR", "Compliance (SOC 2 / ISO 27001)"],
-      initiatives: ["Ecosystem-wide zero-trust rollout", "Unified identity for internal & partner access", "Autonomous incident response pilots"] },
-    { code: "DMT", name: "DMT", icon: HardDrive, desc: "Data Management & Transformation — pipelines, ETL and governed data products.", focus: ["ETL", "Lakehouse", "Governance"], roadmap: "Real-time governed data mesh.",
-      expertise: ["Streaming & batch pipelines", "Lakehouse architecture", "Data contracts & governance", "Master data management"],
-      initiatives: ["Governed data mesh across divisions", "Real-time analytics stream for commerce", "Data-product catalog for internal teams"] },
-    { code: "WAPO", name: "WAPO", icon: Network, desc: "Web APIs, Protocols & Orchestration — the connective tissue of the ecosystem.", focus: ["REST", "GraphQL", "gRPC"], roadmap: "AI-orchestrated service meshes.",
-      expertise: ["REST, GraphQL & gRPC API design", "OAuth 2.0 & developer identity", "Service mesh & orchestration", "Webhooks & event delivery"],
-      initiatives: ["Unified @sgt/ecosystem SDK", "Public developer portal & API keys", "AI-orchestrated workflows across services"] },
-    { code: "DS", name: "DS", icon: LineChart, desc: "Data Science — analytics, experimentation and decision intelligence.", focus: ["Analytics", "Forecasting", "MLOps"], roadmap: "Causal & decision-first data science.",
-      expertise: ["Experimentation & causal inference", "Forecasting & optimization", "Executive analytics", "Feature stores & MLOps"],
-      initiatives: ["Experimentation platform for product teams", "Decision-intelligence dashboards for operators", "Causal uplift models with AIAB"] },
-    { code: "RAO", name: "RAO", icon: Radar, desc: "Research, Applied & Operations — long-horizon R&D and operational excellence.", focus: ["R&D", "Ops", "Innovation Labs"], roadmap: "Breakthrough technology incubation.",
-      expertise: ["Long-horizon research programs", "Innovation labs & incubation", "Operational excellence", "Cross-division R&D partnerships"],
-      initiatives: ["Ecosystem-wide innovation program", "Emerging-tech scouting (agents, robotics, spatial)", "Partner R&D collaborations with enterprises"] },
-  ];
-  const [active, setActive] = useState<Dept | null>(null);
+  const [active, setActive] = useState<Division | null>(null);
   return (
     <section id="departments" className="py-24 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
-            <SectionEyebrow>Departments</SectionEyebrow>
+            <SectionEyebrow>The SYED MNCs</SectionEyebrow>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-              Fifteen divisions,<br /><span className="text-gradient">one unified ecosystem.</span>
+              Seventeen MNCs,<br /><span className="text-gradient">one parent organization.</span>
             </h2>
           </div>
           <p className="text-muted-foreground max-w-md">
-            Each SGT department is an independent technology division with its own expertise, research
-            direction and roadmap — collaborating on a shared engineering core.
+            SYED Global Technologies owns, governs, funds and scales every SYED-branded MNC. Each one is a
+            specialized global vertical with its own products, business model, clients and roadmap.
           </p>
         </div>
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ perspective: 1200 }}>
-          {depts.map((d, i) => (
-            <motion.div
-              key={d.code}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <TiltCard intensity={6} className="group relative glass rounded-2xl p-6 overflow-hidden animated-border h-full">
-                <span className="animated-border-inner" aria-hidden />
-                <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-40 blur-3xl transition-opacity duration-500" />
-                <div className="flex items-center justify-between">
-                  <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                    <d.icon className="h-5 w-5" />
+          {divisions.map((d, i) => {
+            const Icon = deptIcons[d.code] ?? Boxes;
+            return (
+              <motion.div
+                key={d.code}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <TiltCard intensity={6} className="group relative glass rounded-2xl p-6 overflow-hidden animated-border h-full">
+                  <span className="animated-border-inner" aria-hidden />
+                  <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-brand opacity-0 group-hover:opacity-40 blur-3xl transition-opacity duration-500" />
+                  <div className="flex items-center justify-between">
+                    <div className="h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">MNC · {String(i + 1).padStart(2, "0")}</span>
                   </div>
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Division</span>
-                </div>
-                <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground min-h-[44px]">{d.desc}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {d.focus.map((t) => (
-                    <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
-                  ))}
-                </div>
-                <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
-                  <span className="text-foreground/70">Roadmap · </span>{d.roadmap}
-                </div>
-                <div className="mt-4">
-                  <button
-                    onClick={() => setActive(d)}
-                    className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition cursor-pointer group/btn"
-                  >
-                    View department
-                    <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </TiltCard>
-            </motion.div>
-          ))}
+                  <h3 className="mt-5 font-display text-lg font-semibold">{d.name}</h3>
+                  <p className="text-xs text-accent">{d.full}</p>
+                  <p className="mt-2 text-sm text-muted-foreground min-h-[44px]">{d.tagline}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {(d.focus ?? d.features ?? []).slice(0, 3).map((t) => (
+                      <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
+                    ))}
+                  </div>
+                  {d.roadmap?.length ? (
+                    <div className="mt-5 pt-4 border-t border-white/5 text-xs text-muted-foreground">
+                      <span className="text-foreground/70">Roadmap · </span>{d.roadmap.join(" → ")}
+                    </div>
+                  ) : null}
+                  <div className="mt-4">
+                    <button
+                      onClick={() => setActive(d)}
+                      className="inline-flex items-center gap-1 text-sm text-foreground hover:text-[color:var(--brand-2)] transition cursor-pointer group/btn"
+                    >
+                      View MNC
+                      <ArrowRight className="h-3.5 w-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <DepartmentModal dept={active} onClose={() => setActive(null)} />
@@ -638,13 +604,38 @@ export function Departments() {
   );
 }
 
-type Dept = {
-  code: string; name: string; icon: any; desc: string;
-  focus: string[]; roadmap: string; expertise: string[]; initiatives: string[];
-};
+function ModalList({ items }: { items: string[] }) {
+  return (
+    <ul className="grid sm:grid-cols-2 gap-2">
+      {items.map((e) => (
+        <li key={e} className="flex items-start gap-2 text-sm">
+          <Check className="h-4 w-4 mt-0.5 text-[color:var(--brand-3)] shrink-0" />
+          <span className="text-foreground/90">{e}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
-export function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose: () => void }) {
+export function DepartmentModal({ dept, onClose }: { dept: Division | null; onClose: () => void }) {
   const open = !!dept;
+  const Icon = dept ? (deptIcons[dept.code] ?? Boxes) : Boxes;
+  const blocks: { title: string; icon: React.ReactNode; items?: string[] }[] = dept
+    ? [
+        { title: "Features", icon: <Sparkles className="h-4 w-4" />, items: dept.features },
+        { title: "Focus", icon: <Radar className="h-4 w-4" />, items: dept.focus },
+        { title: "Why choose us?", icon: <ShieldCheck className="h-4 w-4" />, items: dept.why },
+        { title: "Products & services", icon: <Boxes className="h-4 w-4" />, items: dept.products },
+        { title: "Business model", icon: <Briefcase className="h-4 w-4" />, items: dept.businessModel },
+        { title: "Pricing", icon: <Banknote className="h-4 w-4" />, items: dept.pricing },
+        { title: "Revenue & clients", icon: <LineChart className="h-4 w-4" />, items: dept.revenue },
+        { title: "Challenges we face", icon: <Lock className="h-4 w-4" />, items: dept.challenges },
+        { title: "Ideas to upgrade", icon: <FlaskConical className="h-4 w-4" />, items: dept.upgrades },
+        { title: "Expansion plan", icon: <Globe2 className="h-4 w-4" />, items: dept.expansion },
+        { title: "Roadmap", icon: <Rocket className="h-4 w-4" />, items: dept.roadmap },
+        { title: "How to establish this MNC", icon: <Building2 className="h-4 w-4" />, items: establishSteps },
+      ].filter((b) => b.items?.length)
+    : [];
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-2xl bg-background/80 backdrop-blur-xl border-white/10 p-0 overflow-hidden">
@@ -656,55 +647,36 @@ export function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose:
               <DialogHeader>
                 <div className="flex items-center gap-4">
                   <div className="h-12 w-12 rounded-xl bg-gradient-brand grid place-items-center text-white shadow-[0_10px_30px_-10px_oklch(0.55_0.22_275/0.8)]">
-                    <dept.icon className="h-6 w-6" />
+                    <Icon className="h-6 w-6" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">SGT Division</div>
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">SGT Group · {dept.full}</div>
                     <DialogTitle className="font-display text-2xl">{dept.name}</DialogTitle>
                   </div>
                 </div>
                 <DialogDescription className="mt-3 text-base text-foreground/80">
-                  {dept.desc}
+                  {dept.tagline}
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="mt-5 flex flex-wrap gap-1.5">
-                {dept.focus.map((t) => (
-                  <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{t}</span>
-                ))}
-              </div>
+              {dept.what && (
+                <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <div className="text-xs uppercase tracking-widest text-accent">What it is</div>
+                  <p className="mt-2 text-sm text-muted-foreground">{dept.what}</p>
+                </div>
+              )}
 
               <div className="mt-6 max-h-[55vh] overflow-y-auto pr-1 space-y-6">
-                <ModalBlock title="Core expertise" icon={<Sparkles className="h-4 w-4" />}>
-                  <ul className="grid sm:grid-cols-2 gap-2">
-                    {dept.expertise.map((e) => (
-                      <li key={e} className="flex items-start gap-2 text-sm">
-                        <Check className="h-4 w-4 mt-0.5 text-[color:var(--brand-3)] shrink-0" />
-                        <span className="text-foreground/90">{e}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </ModalBlock>
-
-                <ModalBlock title="Current roadmap" icon={<Rocket className="h-4 w-4" />}>
-                  <p className="text-sm text-foreground/85">{dept.roadmap}</p>
-                </ModalBlock>
-
-                <ModalBlock title="Example initiatives" icon={<FlaskConical className="h-4 w-4" />}>
-                  <ul className="space-y-2">
-                    {dept.initiatives.map((i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm rounded-lg bg-white/[0.03] border border-white/5 px-3 py-2">
-                        <ArrowRight className="h-4 w-4 mt-0.5 text-[color:var(--brand-2)] shrink-0" />
-                        <span className="text-foreground/90">{i}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </ModalBlock>
+                {blocks.map((b) => (
+                  <ModalBlock key={b.title} title={b.title} icon={b.icon}>
+                    <ModalList items={b.items!} />
+                  </ModalBlock>
+                ))}
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#contact" onClick={onClose} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-white">
-                  Engage this department <ArrowRight className="h-4 w-4" />
+                  Engage this MNC <ArrowRight className="h-4 w-4" />
                 </a>
                 <button onClick={onClose} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm font-medium hover:bg-white/10 cursor-pointer">
                   Close
@@ -715,6 +687,57 @@ export function DepartmentModal({ dept, onClose }: { dept: Dept | null; onClose:
         )}
       </DialogContent>
     </Dialog>
+  );
+}
+
+/* ---------------- Group structure (parent company) ---------------- */
+export function GroupStructure() {
+  return (
+    <section id="group" className="py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-3xl">
+          <SectionEyebrow>Corporate Structure</SectionEyebrow>
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
+            {parent.name}<br /><span className="text-gradient">{parent.role}</span>
+          </h2>
+          <p className="mt-5 text-muted-foreground text-lg">
+            SGT is a real global parent MNC. Each SYED MNC below is documented separately — clear structure,
+            no mixing, end-to-end clarity, the way real holding companies document their verticals.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="glass rounded-2xl p-6">
+            <div className="text-xs uppercase tracking-widest text-accent">Role</div>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+              {parent.rolePoints.map((r) => <li key={r}>· {r}</li>)}
+            </ul>
+          </div>
+          <div className="glass rounded-2xl p-6">
+            <div className="text-xs uppercase tracking-widest text-accent">Core functions</div>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+              {parent.coreFunctions.map((r) => <li key={r}>· {r}</li>)}
+            </ul>
+          </div>
+          <div className="glass rounded-2xl p-6">
+            <div className="text-xs uppercase tracking-widest text-accent">How to establish an MNC</div>
+            <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+              {establishSteps.map((r) => <li key={r}>· {r}</li>)}
+            </ul>
+          </div>
+        </div>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          {parent.bigPicture.map((b) => (
+            <p key={b} className="glass rounded-2xl p-5 font-display text-lg">{b}</p>
+          ))}
+        </div>
+        <div className="mt-6 glass rounded-2xl p-6">
+          <div className="text-xs uppercase tracking-widest text-accent">What comes next</div>
+          <ul className="mt-3 grid gap-2 md:grid-cols-2 text-sm text-muted-foreground">
+            {nextSteps.map((s) => <li key={s}>· {s}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 
