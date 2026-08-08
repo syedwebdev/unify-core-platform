@@ -37,7 +37,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
 export function Nav() {
   const links: { label: string; to: string }[] = [
     { label: "Ecosystem", to: "/ecosystem" },
-    { label: "Departments", to: "/departments" },
+    { label: "MNCs", to: "/departments" },
     { label: "Platform", to: "/platform" },
     { label: "Research", to: "/research" },
     { label: "Industries", to: "/industries" },
@@ -165,20 +165,22 @@ export function Hero() {
           </h1>
           <div className="mt-6 flex justify-center">
             <span className="typewriter text-base sm:text-xl md:text-2xl text-foreground/90">
-              &gt; One ecosystem. Many specialized departments._
+              &gt; One parent company. Seventeen global MNCs._
             </span>
           </div>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            SGT Core is the official digital platform of SGT — a technology organization of specialized
-            departments engineering AI, automation, cloud, and enterprise systems that power the next
-            generation of business software.
+            SGT Core is the official corporate platform of SYED GLOBAL TECHNOLOGIES (SGT) — the parent
+            holding company that owns, governs, funds and scales seventeen specialized SYED MNCs across
+            programming languages, rapid application development, automation, data, cloud, security,
+            infrastructure and artificial intelligence. Together they deliver end-to-end coverage of the
+            digital world.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <MagneticButton
               href="#departments"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white shadow-[0_20px_60px_-20px_oklch(0.55_0.22_275/0.7)] hover:opacity-95 transition"
             >
-              Explore Departments <ArrowRight className="h-4 w-4" />
+              Explore the 17 MNCs <ArrowRight className="h-4 w-4" />
             </MagneticButton>
             <MagneticButton
               href="#ecosystem"
@@ -209,7 +211,7 @@ export function Hero() {
           </div>
           {/* floating chips */}
           <FloatingChip className="hidden md:flex left-[-2%] top-[20%] animate-float" icon={<Bot className="h-4 w-4" />} label="AI Assistant" sub="+18.6% forecast" />
-          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<Building2 className="h-4 w-4" />} label="15 Departments" sub="Unified ecosystem" />
+          <FloatingChip className="hidden md:flex right-[-2%] top-[35%] animate-float [animation-delay:1s]" icon={<Building2 className="h-4 w-4" />} label="17 SYED MNCs" sub="One parent company" />
           <FloatingChip className="hidden md:flex left-[8%] bottom-[-4%] animate-float [animation-delay:2s]" icon={<BrainCircuit className="h-4 w-4" />} label="AIAB · Research" sub="ML · DL · Applied AI" />
         </motion.div>
       </div>
@@ -273,11 +275,11 @@ export function TypingWord() {
 
 /* ---------------- Logo marquee ---------------- */
 export function LogoMarquee() {
-  const items = ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM", "EdTech", "FinTech", "DBMS", "CSS", "SAD", "ITIS", "DMT", "WAPO", "DS", "RAO"];
+  const items = divisions.map((d) => d.name);
   return (
     <section id="ecosystem" className="py-12 border-y border-white/5">
       <div className="mx-auto max-w-7xl px-6">
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">The SGT ecosystem · 15 specialized technology departments</p>
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">The SGT group · 17 specialized global MNCs</p>
         <div className="mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_15%,black_85%,transparent)]">
           <div className="flex gap-12 animate-marquee w-max">
             {[...items, ...items].map((n, i) => (
@@ -295,8 +297,8 @@ export function LogoMarquee() {
 /* ---------------- Overview ---------------- */
 export function Overview() {
   const pillars = [
-    { icon: Building2, title: "One Organization", text: "SGT is the parent technology organization behind every department in the ecosystem." },
-    { icon: Layers, title: "Specialized Divisions", text: "Fifteen independent departments, each owning a distinct technology domain." },
+    { icon: Building2, title: "One Parent Company", text: "SGT owns, governs, funds and scales every SYED-branded MNC in the group." },
+    { icon: Layers, title: "Seventeen MNCs", text: "Each SYED MNC is a specialized global vertical with its own products and P&L." },
     { icon: FlaskConical, title: "Research & Innovation", text: "Applied research in AI, automation, systems and data drives every division forward." },
     { icon: ShieldCheck, title: "Enterprise-Grade Core", text: "Shared infrastructure, security and standards unify the entire ecosystem." },
   ];
@@ -310,9 +312,9 @@ export function Overview() {
             <span className="text-gradient">SGT Core is its digital face.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            SGT is a technology organization built on specialized departments — each an independent
-            engineering division with its own expertise, research and roadmap. SGT Core is the official
-            corporate platform that represents this ecosystem to the world.
+            SGT defines vision, standards, compliance, IP ownership and global expansion. Each SYED MNC is
+            an independent global vertical with its own features, products, business model, pricing, clients,
+            challenges, upgrade path and roadmap. SGT Core is the corporate platform representing them all.
           </p>
         </div>
         <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -351,11 +353,11 @@ export function EcosystemSection() {
         <div className="max-w-3xl mx-auto text-center">
           <SectionEyebrow>The SGT Ecosystem</SectionEyebrow>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold">
-            One core.<br />
-            <span className="text-gradient">Fifteen connected divisions.</span>
+            One parent company.<br />
+            <span className="text-gradient">Seventeen connected MNCs.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            SGT sits at the center — every department connected, exchanging expertise,
+            SGT sits at the center — every MNC connected, exchanging expertise, talent,
             data and infrastructure through a shared engineering core.
           </p>
         </div>
@@ -945,7 +947,7 @@ export function Industries() {
 /* ---------------- Stats ---------------- */
 export function Stats() {
   const stats: { n: number; suffix: string; l: string }[] = [
-    { n: 15, suffix: "", l: "Departments" },
+    { n: 17, suffix: "", l: "SYED MNCs" },
     { n: 18, suffix: "+", l: "Products across divisions" },
     { n: 38, suffix: "", l: "Countries" },
     { n: 9.4, suffix: "B", l: "API Requests / mo" },
@@ -1175,7 +1177,7 @@ export function Engagement() {
       icon: Handshake,
       note: "For enterprises & institutions",
       features: [
-        "Collaborate with SGT departments",
+        "Collaborate with SYED MNCs",
         "Joint solution engineering",
         "Dedicated technical liaison",
         "Access to product divisions",
@@ -1214,8 +1216,8 @@ export function Engagement() {
             Ways to build <span className="text-gradient">with the SGT ecosystem.</span>
           </h2>
           <p className="mt-5 text-muted-foreground text-lg">
-            SGT Core doesn't sell software directly — products are delivered by the respective
-            departments. Organizations engage with SGT through partnership, research and ecosystem access.
+            SGT Core doesn't sell software directly — products and services are delivered by the respective
+            SYED MNCs. Organizations engage with the group through partnership, research and ecosystem access.
           </p>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-5">
@@ -1260,7 +1262,7 @@ export function Vision() {
         <SectionEyebrow>Global Vision</SectionEyebrow>
         <h2 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
           To become the world's most trusted
-          <span className="text-gradient"> technology ecosystem</span> — a unified organization of specialized departments engineering the future of business software.
+          <span className="text-gradient"> technology empire</span> — one parent company, seventeen specialized global MNCs, end-to-end digital world coverage.
         </h2>
       </div>
     </section>
@@ -1279,14 +1281,14 @@ export function CTA() {
               Ready to work with <span className="text-gradient">the SGT ecosystem?</span>
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-              Connect with the right SGT department for your challenge — from applied AI and automation to enterprise systems and cloud infrastructure.
+              Connect with the right SYED MNC for your challenge — from applied AI and automation to enterprise systems and cloud infrastructure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
               <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-medium text-white">
                 Talk to SGT <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#departments" className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10">
-                Explore Departments
+                Explore the MNCs
               </a>
             </div>
           </div>
@@ -1299,8 +1301,8 @@ export function CTA() {
 /* ---------------- Footer ---------------- */
 export function Footer() {
   const cols = [
-    { t: "Departments", l: ["WebDev", "SySoft Systems", "AIAB", "Auto RPA", "ERP-CRM"] },
-    { t: "More Divisions", l: ["EdTech", "FinTech", "DBMS", "CSS", "SAD"] },
+    { t: "SYED MNCs", l: ["SYED (4GL)", "SYED (RAD)", "SYED (SAD)", "SYED (AUTO/RPA)", "SYED (DBMS)", "SYED (DMT)", "SYED (ONE)", "SYED (WEB-DEV)", "SYED (AI-ML-DL)"] },
+    { t: "More MNCs", l: ["SYED (CS)", "SYED (CSS)", "SYED (DS)", "SYED (ITIS)", "SYED (AIIS)", "SYED (NS)", "SYED (WAPL)", "SYED (AIAB)"] },
     { t: "Industries", l: ["Retail", "Food", "Healthcare", "Education", "Enterprise"] },
     { t: "Company", l: ["About", "Careers", "Blog", "Press", "Contact"] },
   ];
@@ -1314,8 +1316,8 @@ export function Footer() {
               <span className="font-display font-bold text-lg">SGT</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-              SGT is a technology organization of specialized departments building the core infrastructure
-              for modern business software.
+              SYED GLOBAL TECHNOLOGIES is the parent holding company of seventeen specialized SYED MNCs
+              building the core infrastructure for modern business software.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {[Twitter, Linkedin, Github, Youtube].map((I, i) => (
@@ -1337,7 +1339,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© {new Date().getFullYear()} SGT · A technology ecosystem of specialized departments.</div>
+          <div>© {new Date().getFullYear()} SGT · Parent holding company of 17 specialized SYED MNCs.</div>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--brand-3)] animate-pulse-glow" /> All systems operational</span>
           </div>
