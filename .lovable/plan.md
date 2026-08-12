@@ -1,58 +1,26 @@
+# Why the 3D globe shows on Vercel but not in your preview
 
-# SGT — Cinematic Experience Upgrade
+Nothing is broken and nothing is missing from this project. The 3D scenes are deliberately gated to screens **768px wide and up**:
 
-This is a large upgrade. To keep the site fast, stable, and consistent with the current premium look, I'll ship it in **four focused phases** instead of one giant rewrite. You can approve the whole plan, or tell me to skip/reorder phases.
+- `Hero` in `src/components/site/sections.tsx` only mounts `HeroScene` when `matchMedia("(min-width: 768px)")` matches (and when reduced-motion is off).
+- Your current preview viewport is **690px wide**, so the gate returns false and only the flat 2D neural background renders.
+- On Vercel you were looking at a desktop-width window, so the same code mounts the 3D scene.
 
-## Phase 1 — Foundation: motion + interaction primitives
-Ship the invisible plumbing first so every later section feels cohesive.
+The same gate also skips 3D for anyone who has "reduce motion" enabled at the OS level.
 
-- Install `framer-motion` and `lenis` (smooth inertia scroll).
-- Add a `MotionProvider` wrapping the app with Lenis smooth scroll + `prefers-reduced-motion` respect.
-- Add reusable primitives in `src/components/motion/`:
-  - `MagneticButton` — cursor-attracted CTAs with spring physics.
-  - `TiltCard` — 3D tilt + glare on hover for department/product cards.
-  - `RevealText` / `WordStagger` — scroll-triggered letter/word reveals.
-  - `CursorGlow` — soft global cursor spotlight (desktop only).
-  - `ParallaxLayer` — scroll-based Y/opacity/scale.
-- Add global CSS tokens for premium glass, aurora, and volumetric glow (extend `src/styles.css`).
+## Plan: make the 3D visible on mobile too (lightweight mode)
 
-## Phase 2 — Hero: 3D scene + neural background
-Replace the current static hero visuals (keep the current headline + typing animation) with a cinematic hero.
-
-- Install `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`.
-- Build `HeroScene` (R3F):
-  - Central slowly-rotating **wireframe/glass technology sphere** with subtle displacement.
-  - Orbiting **network nodes** connected by animated lines (the SGT ecosystem preview).
-  - HDR environment (`Environment preset="city"`), rim + ambient lights, soft shadows.
-  - Post-processing: `Bloom`, mild `ChromaticAberration`, `Vignette`, DoF.
-  - Mouse-driven camera parallax (damped).
-  - Suspense fallback = current gradient hero, so first paint stays instant.
-- Add SVG **neural network** canvas layer behind the 3D (animated with requestAnimationFrame, capped at 60fps, paused off-screen).
-- Floating **holographic UI panels** (glass cards with live-looking stats) using framer-motion float loops.
-- Preserve the existing typing headline and CTA copy.
-
-## Phase 3 — Sections: scroll storytelling
-- **Departments**: convert cards to `TiltCard` with animated gradient borders, inner glow, and staggered scroll reveal. Add a dedicated **Ecosystem Map** section: SGT at center, animated SVG lines to all 15 departments; hovering a node highlights its edges and dims others; clicking opens the existing modal.
-- **SySoft product showcase**: each product card becomes a mock SaaS dashboard (floating panels, animated bar/line chart, live status chip, subtle mouse tilt).
-- **Statistics**: counters use `useInView` + number rolling; add circular progress rings.
-- **AI Platform section**: animated neural graph (nodes pulse, connections travel light beads).
-- **Section transitions**: sticky gradient dividers + background color morph tied to scroll progress.
-
-## Phase 4 — Polish + performance
-- Magnetic primary buttons across nav/hero/CTA.
-- Micro-interactions: icon rotation on hover, shimmer on load, ripple on click.
-- **Performance guardrails** (non-negotiable):
-  - Lazy-load `HeroScene` via `React.lazy` + Suspense; only mount when the hero is in view.
-  - Mobile (`< 768px`) and `prefers-reduced-motion` users get a **static premium fallback** (current hero + CSS aurora) — no R3F, no Lenis hijack, no cursor glow.
-  - Cap DPR at `[1, 1.5]`, `frameloop="demand"` where possible, freeze the scene when tab hidden.
-  - Code-split heavy sections; keep initial JS budget in check.
-  - Keep `og:image`, favicon, and current SEO metadata intact.
+1. Lower the 3D gate in `Hero` from 768px to all widths, keeping the reduced-motion opt-out.
+2. Add a mobile-tuned quality mode so phones stay smooth:
+   - lower `dpr` cap (1 instead of 1.5)
+   - pull the camera back / reduce sphere segment counts
+   - fewer orbit nodes
+   - skip the heavier post-processing passes (chromatic aberration) on small screens
+3. Apply the same width/quality treatment to the neural brain scene (`NeuralSection` / `NeuralBrainScene`) so the AI section also renders on mobile.
+4. Verify in the 690px preview that the canvas mounts and the hero text stays readable above it.
 
 ## Technical notes
-- Stack additions: `framer-motion`, `lenis`, `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`.
-- No backend changes. No route changes. Existing department data, modal, and copy are preserved.
-- All new colors/gradients go through `src/styles.css` tokens (no hard-coded hex in components).
-- Every 3D/motion feature has a static CSS fallback so the site still looks premium if WebGL is unavailable.
 
-## Suggested delivery order
-I recommend I start with **Phase 1 + Phase 2** in the next turn (biggest visible impact), then Phase 3, then Phase 4. Reply with "go" to proceed, or tell me which phases to skip/reorder.
+Changes are limited to `src/components/site/sections.tsx`, `src/components/hero/HeroScene.tsx`, `src/components/ai/NeuralSection.tsx`, and `src/components/ai/NeuralBrainScene.tsx`. No dependency changes: `three`, `@react-three/fiber`, `drei`, and `postprocessing` are already installed. Scenes stay lazy-loaded and client-only, so SSR behaviour is unchanged.
+
+If you would rather keep phones 2D-only for performance, the alternative is to leave the gate as is — in that case the answer is simply "resize the preview to desktop width to see the globe."
