@@ -9,7 +9,6 @@ export function NeuralSection() {
   useEffect(() => {
     const ok =
       typeof window !== "undefined" &&
-      window.matchMedia("(min-width: 768px)").matches &&
       !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setEnable3D(ok);
   }, []);

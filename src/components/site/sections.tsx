@@ -121,7 +121,6 @@ export function Hero() {
   const enable3D =
     mounted &&
     typeof window !== "undefined" &&
-    window.matchMedia("(min-width: 768px)").matches &&
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
