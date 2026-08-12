@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState, useEffect, useMemo, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useInView } from "framer-motion";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
 import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
