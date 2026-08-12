@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
-import { useState, useEffect, useMemo, useRef, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useInView } from "framer-motion";
 import { NeuralBackground } from "@/components/hero/NeuralBackground";
 import { MagneticButton, TiltCard, CountUp } from "@/components/motion/primitives";
@@ -9,7 +9,6 @@ import { NeuralSection } from "@/components/ai/NeuralSection";
 import { motion } from "framer-motion";
 import { divisions, parent, nextSteps, establishSteps, type Division } from "@/data/divisions";
 
-const HeroScene = lazy(() => import("@/components/hero/HeroScene"));
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from "@/components/ui/dialog";
@@ -116,13 +115,6 @@ export function Logo({ className = "h-6 w-6" }: { className?: string }) {
 
 /* ---------------- Hero ---------------- */
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  const enable3D =
-    mounted &&
-    typeof window !== "undefined" &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   return (
     <section className="relative pt-36 pb-24 md:pt-44 md:pb-40 overflow-hidden">
       {/* Layered atmospheric background */}
@@ -134,17 +126,6 @@ export function Hero() {
         <div className="absolute -top-20 -left-20 h-[520px] w-[520px] rounded-full bg-[color:var(--brand)] opacity-25 blur-[120px] animate-float" />
         <div className="absolute top-20 right-[-10%] h-[560px] w-[560px] rounded-full bg-[color:var(--brand-2)] opacity-20 blur-[130px] animate-float [animation-delay:2s]" />
       </div>
-
-      {/* 3D scene layer */}
-      {enable3D && (
-        <div className="pointer-events-none absolute inset-0 -z-[5] opacity-90">
-          <Suspense fallback={null}>
-            <HeroScene />
-          </Suspense>
-          {/* soft fade to content */}
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[color:var(--background)]" />
-        </div>
-      )}
 
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
