@@ -5,7 +5,7 @@ import { Environment, Float, Icosahedron, Sphere, Torus } from "@react-three/dre
 import { EffectComposer, Bloom, ChromaticAberration, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 
-function CoreSphere() {
+function CoreSphere({ segments = 64 }: { segments?: number }) {
   const ref = useRef<THREE.Group>(null);
   useFrame((_, dt) => {
     if (ref.current) {
@@ -16,7 +16,7 @@ function CoreSphere() {
   return (
     <group ref={ref}>
       {/* Solid glassy core */}
-      <Sphere args={[1.05, 64, 64]}>
+      <Sphere args={[1.05, segments, segments]}>
         <meshPhysicalMaterial
           color="#4F46E5"
           roughness={0.15}
@@ -45,11 +45,10 @@ function CoreSphere() {
   );
 }
 
-function OrbitNodes() {
+function OrbitNodes({ count = 14 }: { count?: number }) {
   const group = useRef<THREE.Group>(null);
   const positions = useMemo(() => {
     const arr: [number, number, number][] = [];
-    const count = 14;
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
       const r = 2.4 + (i % 3) * 0.35;
@@ -57,7 +56,7 @@ function OrbitNodes() {
       arr.push([Math.cos(angle) * r, y, Math.sin(angle) * r]);
     }
     return arr;
-  }, []);
+  }, [count]);
 
   useFrame((_, dt) => {
     if (group.current) group.current.rotation.y -= dt * 0.08;
@@ -99,10 +98,11 @@ function CameraParallax() {
 }
 
 export default function HeroScene() {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   return (
     <Canvas
-      dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 6], fov: 45 }}
+      dpr={isMobile ? 1 : [1, 1.5]}
+      camera={{ position: [0, 0, isMobile ? 7.4 : 6], fov: 45 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       className="!absolute inset-0"
     >
@@ -113,16 +113,20 @@ export default function HeroScene() {
       <pointLight position={[3, 3, -2]} intensity={1.5} color="#4F46E5" />
 
       <Suspense fallback={null}>
-        <CoreSphere />
-        <OrbitNodes />
-        <Environment preset="city" />
+        <CoreSphere segments={isMobile ? 32 : 64} />
+        <OrbitNodes count={isMobile ? 8 : 14} />
+        {!isMobile && <Environment preset="city" />}
       </Suspense>
 
       <CameraParallax />
 
       <EffectComposer>
         <Bloom intensity={0.9} luminanceThreshold={0.2} luminanceSmoothing={0.9} mipmapBlur />
-        <ChromaticAberration offset={[0.0006, 0.0009] as any} radialModulation={false} modulationOffset={0} />
+        {!isMobile ? (
+          <ChromaticAberration offset={[0.0006, 0.0009] as any} radialModulation={false} modulationOffset={0} />
+        ) : (
+          <></>
+        )}
         <Vignette eskil={false} offset={0.2} darkness={0.7} />
       </EffectComposer>
     </Canvas>

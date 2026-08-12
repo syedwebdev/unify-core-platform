@@ -6,11 +6,10 @@ import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 
 /** Digital brain: two mirrored hemispheres made of glowing nodes + synapse lines. */
-function BrainHemisphere({ side = 1 }: { side?: 1 | -1 }) {
+function BrainHemisphere({ side = 1, count = 90 }: { side?: 1 | -1; count?: number }) {
   const group = useRef<THREE.Group>(null);
   const nodes = useMemo(() => {
     const pts: THREE.Vector3[] = [];
-    const count = 90;
     for (let i = 0; i < count; i++) {
       // fibonacci half-sphere
       const y = 1 - (i / (count - 1)) * 2;
@@ -23,7 +22,7 @@ function BrainHemisphere({ side = 1 }: { side?: 1 | -1 }) {
       pts.push(new THREE.Vector3(x * rad, y * rad, z * rad));
     }
     return pts;
-  }, [side]);
+  }, [side, count]);
 
   const edges = useMemo(() => {
     const list: [THREE.Vector3, THREE.Vector3][] = [];
@@ -123,11 +122,15 @@ function Core() {
 }
 
 export default function NeuralBrainScene() {
-  const synapses = useMemo(() => Array.from({ length: 12 }, (_, i) => i + 1), []);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const synapses = useMemo(
+    () => Array.from({ length: isMobile ? 6 : 12 }, (_, i) => i + 1),
+    [isMobile],
+  );
   return (
     <Canvas
-      dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 5.2], fov: 45 }}
+      dpr={isMobile ? 1 : [1, 1.5]}
+      camera={{ position: [0, 0, isMobile ? 6.2 : 5.2], fov: 45 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       className="!absolute inset-0"
     >
@@ -136,8 +139,8 @@ export default function NeuralBrainScene() {
       <pointLight position={[-3, -2, -3]} intensity={1.4} color="#4F46E5" />
       <Suspense fallback={null}>
         <Core />
-        <BrainHemisphere side={1} />
-        <BrainHemisphere side={-1} />
+        <BrainHemisphere side={1} count={isMobile ? 50 : 90} />
+        <BrainHemisphere side={-1} count={isMobile ? 50 : 90} />
         {synapses.map((s) => (
           <Synapse key={s} seed={s} />
         ))}
